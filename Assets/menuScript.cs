@@ -116,6 +116,7 @@ public class menuScript : MonoBehaviour
         freePlayButton.SetActive(true);
 
         backButton.SetActive(false);
+        rudimentBanner.SetActive(false);
         ssrButton.SetActive(false);
         dsrButton.SetActive(false);
         fButton.SetActive(false);
