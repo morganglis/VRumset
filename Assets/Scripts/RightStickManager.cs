@@ -12,17 +12,21 @@ public AudioSource Snare;
     {
         
     }
+    private float snareStart = 0f;
+    private float snareCooldown = 0.5f;
 
     void OnCollisionEnter(Collision col) 
     {
-        if (col.gameObject.tag == "Snare") {
+        if (col.gameObject.tag == "Snare" && Time.time > snareStart + snareCooldown) 
+        {
             Snare.PlayOneShot(input);
-            StartCoroutine(DelayedAction());
+            snareStart = Time.time;
+            
         }
-   
-}
+    }
 
-private IEnumerator DelayedAction() {
+private IEnumerator DelayedAction()
+{
     yield return new WaitForSeconds(1);
     print("I was printed after a delay of 0.5 seconds!");
 }
