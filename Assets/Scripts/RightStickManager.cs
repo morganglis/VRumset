@@ -4,94 +4,113 @@ using UnityEngine;
 using UltimateXR.Avatar;
 using UltimateXR.Haptics;
 using UltimateXR.Core;
+using UltimateXR.Devices;
 
 public class RightStickManager : MonoBehaviour
 {
 
-public AudioClip input;
-public AudioSource Snare;
+ public AudioClip input;
+    public AudioSource Snare;
 
-public AudioClip input2;
-public AudioSource HiHat;
+    public AudioClip input2;
+    public AudioSource HiHat;
 
-public AudioClip input3;
-public AudioSource Crash1;
+    public AudioClip input3;
+    public AudioSource Crash1;
 
-public AudioClip input4;
-public AudioSource Crash2;
+    public AudioClip input4;
+    public AudioSource Crash2;
 
-public AudioClip input5;
-public AudioSource Tom1;
+    public AudioClip input5;
+    public AudioSource Tom1;
 
-public AudioClip input6;
-public AudioSource Tom2;
+    public AudioClip input6;
+    public AudioSource Tom2;
 
-public AudioClip input7;
-public AudioSource Floor;
+    public AudioClip input7;
+    public AudioSource Floor;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public AudioClip input9;
+    public AudioSource HiHatClosed;
+
+    public bool isPressed;
+
+    private float soundStart = 0f;
+    private float soundCooldown = 0.4f;
+
+
+    void Update() {
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
+            isPressed = true;
+            Debug.Log(isPressed);
+        }
+
+        else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) {
+            isPressed = false;
+            Debug.Log(isPressed);
+        }
         
     }
-    private float snareStart = 0f;
-    private float snareCooldown = 0.4f;
 
     void OnCollisionEnter(Collision col) 
     {
-        if (col.gameObject.tag == "Snare" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "Snare" && Time.time > soundStart + soundCooldown) 
         {
             Snare.PlayOneShot(input);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "HiHatOpen" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && !(isPressed)) 
         {
             HiHat.PlayOneShot(input2);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "Crash1" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && isPressed) 
+        {
+            HiHatClosed.pitch = Random.Range(0.8f,1.2f);
+            HiHatClosed.PlayOneShot(input9);
+            soundStart = Time.time;
+            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
+        }
+
+        if (col.gameObject.tag == "Crash1" && Time.time > soundStart + soundCooldown) 
         {
             Crash1.PlayOneShot(input2);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "Crash2" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "Crash2" && Time.time > soundStart + soundCooldown) 
         {
             Crash2.PlayOneShot(input4);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "Floor" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "Floor" && Time.time > soundStart + soundCooldown) 
         {
             Floor.PlayOneShot(input7);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "Tom1" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "Tom1" && Time.time > soundStart + soundCooldown) 
         {
             Crash2.PlayOneShot(input5);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "Tom2" && Time.time > snareStart + snareCooldown) 
+        if (col.gameObject.tag == "Tom2" && Time.time > soundStart + soundCooldown) 
         {
             Tom2.PlayOneShot(input6);
-            snareStart = Time.time;
+            soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
     }
 
-private IEnumerator DelayedAction()
-{
-    yield return new WaitForSeconds(1);
-    print("I was printed after a delay of 0.5 seconds!");
-}
+
 }

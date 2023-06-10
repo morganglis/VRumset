@@ -12,6 +12,7 @@ TagManager:
   - Floor
   - HiHatOpen
   - Kick
+  - HiHat
   layers:
   - Default
   - TransparentFX
