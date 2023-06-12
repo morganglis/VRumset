@@ -10,11 +10,15 @@ using UltimateXR;
 public class FreePlayScript : MonoBehaviour
 {
 
+    public GameObject hihat;
+
     public AudioClip input8;
     public AudioSource Kick;
 
     private float soundStart = 0f;
     private float soundCooldown = 0.4f;
+
+    public bool isPressed;
 
     void Update()
     {
@@ -30,14 +34,31 @@ public class FreePlayScript : MonoBehaviour
 
     }
 
-        // if (UxrAvatar.LocalAvatarInput.GetButtonsEvent(UxrHandSide.Left, UxrInputButtons.Trigger, UxrButtonEventType.PressDown)) {
-        //     // some animation for hi hat
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
+            isPressed = true;
+        
+        }
+
+        else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) {
+            isPressed = false;
+        
+        }
+
+        // if (isPressed) {
+            
+        //     hihat.transform.position = new Vector3(0.03412427f, -0.03703818f, 0.1833f);
+
+        //     //0.1861966
         // }
+
+        // else if (!isPressed) {
+        //     hihat.transform.position = new Vector3(0.03412427f, -0.03703818f, 0.1861966f);
+
+        // }
+        }
         
     }
 
         
 
-    
-    
-}
+
