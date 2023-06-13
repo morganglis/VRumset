@@ -44,17 +44,18 @@ public class FreePlayScript : MonoBehaviour
         
         }
 
-        // if (isPressed) {
+         if (isPressed) {
             
-        //     hihat.transform.position = new Vector3(0.03412427f, -0.03703818f, 0.1833f);
+             hihat.transform.position = new Vector3(2.4866f, 93.6796f, -0.8179f);
 
-        //     //0.1861966
-        // }
+             //0.1861966
+         }
 
-        // else if (!isPressed) {
-        //     hihat.transform.position = new Vector3(0.03412427f, -0.03703818f, 0.1861966f);
+         else if (!isPressed) {
+             hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);
 
-        // }
+
+         }
         }
         
     }
