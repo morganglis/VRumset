@@ -35,6 +35,9 @@ public class LeftStickManager : MonoBehaviour
     private float soundStart = 0f;
     private float soundCooldown = 0.4f;
 
+    public Animation crashAnimation;
+    public Animation rideAnimation;
+
     public bool isPressed;
 
 
@@ -88,6 +91,7 @@ public class LeftStickManager : MonoBehaviour
             Crash1.PlayOneShot(input3);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
+            crashAnimation.Play();
         }
 
         if (col.gameObject.tag == "Crash2" && Time.time > soundStart + soundCooldown) 
@@ -96,6 +100,7 @@ public class LeftStickManager : MonoBehaviour
             Crash2.PlayOneShot(input4);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
+            rideAnimation.Play();
         }
 
         if (col.gameObject.tag == "Floor" && Time.time > soundStart + soundCooldown) 

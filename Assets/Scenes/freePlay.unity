@@ -1695,6 +1695,7 @@ GameObject:
   - component: {fileID: 1087872339}
   - component: {fileID: 1087872338}
   - component: {fileID: 1087872337}
+  - component: {fileID: 1087872341}
   m_Layer: 0
   m_Name: Crash
   m_TagString: Crash1
@@ -1709,8 +1710,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087872335}
-  m_LocalRotation: {x: 0.51753956, y: -0.4619115, z: -0.7082821, w: 0.13087085}
-  m_LocalPosition: {x: 0.086255, y: 0.044753, z: 0.32051}
+  m_LocalRotation: {x: 0.5047754, y: -0.4758269, z: -0.70445764, w: 0.15010051}
+  m_LocalPosition: {x: 0.09092149, y: 0.052894056, z: 0.32024473}
   m_LocalScale: {x: 1.3134921, y: 1.3134917, z: 1.313492}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1718,7 +1719,7 @@ Transform:
   - {fileID: 610498366}
   m_Father: {fileID: 1129595417289167894}
   m_RootOrder: 21
-  m_LocalEulerAnglesHint: {x: -31.256, y: 272.52, z: 230.91}
+  m_LocalEulerAnglesHint: {x: -31.256, y: 272.52, z: 234.02899}
 --- !u!64 &1087872337
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1783,6 +1784,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087872335}
   m_Mesh: {fileID: 5246314849399521741, guid: c7bf033b3af186748a5e9453bfb0ad13, type: 3}
+--- !u!111 &1087872341
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087872335}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 514422d1a3fc22242b90e2df8d98df6c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 514422d1a3fc22242b90e2df8d98df6c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1122039354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,6 +2823,7 @@ GameObject:
   - component: {fileID: 1707400407}
   - component: {fileID: 1707400406}
   - component: {fileID: 1707400405}
+  - component: {fileID: 1707400408}
   m_Layer: 0
   m_Name: Ride
   m_TagString: Crash2
@@ -2820,8 +2838,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707400403}
-  m_LocalRotation: {x: 0.6215987, y: -0.10494958, z: -0.6359964, w: 0.4450946}
-  m_LocalPosition: {x: -0.051659, y: 0.052763, z: 0.31375}
+  m_LocalRotation: {x: 0.75368917, y: 0.0026244514, z: -0.47204772, w: 0.45729274}
+  m_LocalPosition: {x: -0.098719016, y: 0.02038577, z: 0.31616935}
   m_LocalScale: {x: 1.4179146, y: 1.4179143, z: 1.4179145}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2829,7 +2847,7 @@ Transform:
   - {fileID: 85536942}
   m_Father: {fileID: 1129595417289167894}
   m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 24.825, y: 283.06702, z: 230.135}
+  m_LocalEulerAnglesHint: {x: 43.772, y: 259.135, z: 216.328}
 --- !u!64 &1707400405
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2894,6 +2912,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707400403}
   m_Mesh: {fileID: 5246314849399521741, guid: c7bf033b3af186748a5e9453bfb0ad13, type: 3}
+--- !u!95 &1707400408
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707400403}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cefbb49f86308fb4d82d988365e629d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1769845464
 GameObject:
   m_ObjectHideFlags: 0
@@ -4796,6 +4834,7 @@ MonoBehaviour:
   Floor: {fileID: 1411269259}
   input9: {fileID: 8300000, guid: 9c23bc2db3edb684594b3035c7a28668, type: 3}
   HiHatClosed: {fileID: 87624281}
+  crashanimation: {fileID: 1087872341}
   isPressed: 0
 --- !u!4 &2520443553974533866
 Transform:
