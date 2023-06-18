@@ -18,6 +18,8 @@ public class FreePlayScript : MonoBehaviour
     private float soundStart = 0f;
     private float soundCooldown = 0.4f;
 
+    public Animation kickAnimation;
+
     public bool isPressed;
 
     void Update()
@@ -26,7 +28,7 @@ public class FreePlayScript : MonoBehaviour
         if (UxrAvatar.LocalAvatarInput.GetButtonsPressDown(UxrHandSide.Right, UxrInputButtons.Trigger) && Time.time > soundStart + soundCooldown) 
     {
 
-        // Play some animation
+            kickAnimation.Play();
             Kick.pitch = Random.Range(0.8f,1.2f);
             Kick.PlayOneShot(input8);
             soundStart = Time.time;
