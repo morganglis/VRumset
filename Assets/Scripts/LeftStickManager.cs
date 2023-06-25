@@ -38,10 +38,10 @@ public class LeftStickManager : MonoBehaviour
     public Animation crashAnimation;
     public Animation rideAnimation;
 
+    public GameObject rightRingModel;
+    public GameObject leftRingModel;
+
     public bool isPressed;
-
-
-    
 
     void Update() {
         if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
@@ -55,8 +55,6 @@ public class LeftStickManager : MonoBehaviour
         }
         
     }
-    
-
 
     void OnCollisionEnter(Collision col) 
     {
@@ -126,8 +124,13 @@ public class LeftStickManager : MonoBehaviour
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
         }
-    }
-
-
     
+
+    if (col.gameObject.tag == "leftRing") 
+        {
+             rightRingModel.SetActive(true);
+             leftRingModel.SetActive(false);
+        }
+}
+
 }

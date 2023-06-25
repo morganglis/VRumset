@@ -9,7 +9,7 @@ using UltimateXR.Devices;
 public class RightStickManager : MonoBehaviour
 {
 
- public AudioClip input;
+    public AudioClip input;
     public AudioSource Snare;
 
     public AudioClip input2;
@@ -41,8 +41,24 @@ public class RightStickManager : MonoBehaviour
     public Animation crashAnimation;
     public Animation rideAnimation;
 
+    public GameObject rightRingModel;
+    public GameObject leftRingModel;
+
+    public float timeRemaining = 2;
+
+    public float total = 0;
+    public float correct = 0;
+
+
+    void Start() {
+
+
+    }
 
     void Update() {
+
+    // public bool startButtonPressed = GameObject.Find("ssrManager").GetComponent<ssrScript>().startButton;
+
         if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
             isPressed = true;
             Debug.Log(isPressed);
@@ -52,8 +68,23 @@ public class RightStickManager : MonoBehaviour
             isPressed = false;
             Debug.Log(isPressed);
         }
+
+        if (startButtonPressed = true && timeRemaining > 0) {
+
+                leftRingModel.SetActive(true);
+                timeRemaining -= Time.deltaTime;
+                total = 0;
+                correct = 0;
+            }
+
+        if (timeRemaining == 0) {
+                Debug.Log("Time has run out!");
+                rightRingModel.SetActive(false);
+                leftRingModel.SetActive(false);
+            }
+
+        }
         
-    }
 
     void OnCollisionEnter(Collision col) 
     {
@@ -115,7 +146,17 @@ public class RightStickManager : MonoBehaviour
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
+
+        if (col.gameObject.tag == "rightRing") 
+        {
+             rightRingModel.SetActive(false);
+             leftRingModel.SetActive(true);
+             total += 1;
+             correct +=1;
+        }
+
+        if (col.gameObject.tag == "leftRing") {
+            total += 1;
+        }
     }
-
-
 }
