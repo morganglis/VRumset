@@ -44,44 +44,32 @@ public class RightStickManager : MonoBehaviour
     public GameObject rightRingModel;
     public GameObject leftRingModel;
 
-    public float timeRemaining = 2;
+    public float timeRemaining = 3f * 60f;
+    public bool counterRunning = false;
 
     public float total = 0;
     public float correct = 0;
 
+    public GameObject ssrManager;
+    private ssrScript scriptManager;
+
 
     void Start() {
-
+        scriptManager = ssrManager.GetComponent<ssrScript>();
+        leftRingModel.SetActive(false);
 
     }
 
     void Update() {
 
-    // public bool startButtonPressed = GameObject.Find("ssrManager").GetComponent<ssrScript>().startButton;
 
         if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
             isPressed = true;
-            Debug.Log(isPressed);
         }
 
         else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) {
             isPressed = false;
-            Debug.Log(isPressed);
         }
-
-        if (startButtonPressed = true && timeRemaining > 0) {
-
-                leftRingModel.SetActive(true);
-                timeRemaining -= Time.deltaTime;
-                total = 0;
-                correct = 0;
-            }
-
-        if (timeRemaining == 0) {
-                Debug.Log("Time has run out!");
-                rightRingModel.SetActive(false);
-                leftRingModel.SetActive(false);
-            }
 
         }
         

@@ -46,12 +46,10 @@ public class LeftStickManager : MonoBehaviour
     void Update() {
         if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
             isPressed = true;
-            Debug.Log(isPressed);
         }
 
         else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) {
             isPressed = false;
-            Debug.Log(isPressed);
         }
         
     }
