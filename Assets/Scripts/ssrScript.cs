@@ -119,14 +119,6 @@ public class ssrScript : MonoBehaviour {
         timeLeftDisplayText.SetActive(true);
     }
 
-    public void startButtonFuncRelease() {
-
-        if(pressed) {
-            return;
-        }
-        startButton = false;
-    }
-
     public void tutorialButtonFunc()
     {
         if (pressed)

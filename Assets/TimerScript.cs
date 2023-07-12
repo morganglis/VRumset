@@ -12,6 +12,8 @@ public class TimerScript : MonoBehaviour
     public GameObject ssrManager;
     private ssrScript scriptManager;
 
+    private UIButtonScript buttonscript;
+
     public GameObject rightRingModel;
     public GameObject leftRingModel;
 
@@ -32,6 +34,11 @@ public class TimerScript : MonoBehaviour
 
             if (timeRemaining > 0)
             {
+                if (rightRingModel.activeSelf)
+                {
+                    leftRingModel.SetActive(false);
+                }
+                
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
                 Debug.Log(timeRemaining);
