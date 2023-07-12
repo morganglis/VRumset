@@ -27,6 +27,7 @@ public class TimerScript : MonoBehaviour
     {
         if (scriptManager.startButton == true)
         {
+            Debug.Log(scriptManager.startButton);
             leftRingModel.SetActive(true);
 
             if (timeRemaining > 0)

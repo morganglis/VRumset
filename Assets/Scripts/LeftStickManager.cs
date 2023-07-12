@@ -41,6 +41,9 @@ public class LeftStickManager : MonoBehaviour
     public GameObject rightRingModel;
     public GameObject leftRingModel;
 
+    public float total = 0;
+    public float correct = 0;
+
     public bool isPressed;
 
     void Update() {
@@ -124,11 +127,17 @@ public class LeftStickManager : MonoBehaviour
         }
     
 
-    if (col.gameObject.tag == "leftRing") 
-        {
-             rightRingModel.SetActive(true);
-             leftRingModel.SetActive(false);
-        }
+        if (col.gameObject.tag == "leftRing") 
+            {
+                leftRingModel.SetActive(false);
+                rightRingModel.SetActive(true);
+                total += 1;
+                correct +=1;
+            }
+
+        if (col.gameObject.tag == "rightRing") {
+                total += 1;
+            }
 }
 
 }

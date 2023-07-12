@@ -56,7 +56,7 @@ public class RightStickManager : MonoBehaviour
 
     void Start() {
         scriptManager = ssrManager.GetComponent<ssrScript>();
-        leftRingModel.SetActive(false);
+
 
     }
 

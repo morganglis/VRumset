@@ -82,17 +82,18 @@ public class ssrScript : MonoBehaviour {
          if (isPressed) {
             
              hihat.transform.position = new Vector3(2.4866f, 93.6796f, -0.8179f);
-
-             //0.1861966
          }
 
          else if (!isPressed) {
              hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);
     }
 
-        // if (timeRemaing.timerscriptManager = 0) {
-
-        // }
+        if (timerscriptManager.timeRemaining == 0) {
+            ssRInProgressUI.SetActive(false);
+            timeLeftTextUI.SetActive(false);
+            timeLeftDisplayText.SetActive(false);
+            rudimentCompleteUI.SetActive(true);
+        }
 
 }
 
@@ -116,6 +117,14 @@ public class ssrScript : MonoBehaviour {
         ssRInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
         timeLeftDisplayText.SetActive(true);
+    }
+
+    public void startButtonFuncRelease() {
+
+        if(pressed) {
+            return;
+        }
+        startButton = false;
     }
 
     public void tutorialButtonFunc()
