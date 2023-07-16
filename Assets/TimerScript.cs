@@ -29,7 +29,6 @@ public class TimerScript : MonoBehaviour
     {
         if (scriptManager.startButton == true)
         {
-            Debug.Log(scriptManager.startButton);
             leftRingModel.SetActive(true);
 
             if (timeRemaining > 0)
@@ -41,11 +40,9 @@ public class TimerScript : MonoBehaviour
                 
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
-                Debug.Log(timeRemaining);
             }
             else
             {
-                Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
                 leftRingModel.SetActive(false);

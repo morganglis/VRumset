@@ -129,15 +129,30 @@ public class LeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "leftRing") 
             {
-                leftRingModel.SetActive(false);
-                rightRingModel.SetActive(true);
-                total += 1;
-                correct +=1;
+                StartCoroutine(leftHitCooldown());
             }
 
         if (col.gameObject.tag == "rightRing") {
-                total += 1;
+                StartCoroutine(rightHitCooldown());
+      
             }
-}
+    }
+
+    IEnumerator leftHitCooldown()
+        {
+            leftRingModel.SetActive(false);
+            yield return new WaitForSecondsRealtime(0.3f);
+            rightRingModel.SetActive(true);
+            total += 1;
+            correct +=1;
+        }
+
+    IEnumerator rightHitCooldown() {
+        total += 1;
+        yield return new WaitForSecondsRealtime(0.3f);
+
+    }
+    
+
 
 }

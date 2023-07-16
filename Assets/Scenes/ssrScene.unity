@@ -4849,19 +4849,7 @@ MonoBehaviour:
         m_CallState: 2
   onRelease:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1932347948}
-        m_TargetAssemblyTypeName: ssrScript, Assembly-CSharp
-        m_MethodName: startButtonFuncRelease
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1603675543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6092,6 +6080,7 @@ MonoBehaviour:
   kickAnimation: {fileID: 8159620091680090152}
   isPressed: 0
   startButton: 0
+  finaltotal: 0
 --- !u!1 &2030324311
 GameObject:
   m_ObjectHideFlags: 0
@@ -7376,7 +7365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1925257778953600551
 MeshFilter:
   m_ObjectHideFlags: 0

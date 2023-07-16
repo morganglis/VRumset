@@ -6,12 +6,13 @@ using UltimateXR.Haptics;
 using UltimateXR.Core;
 using UltimateXR.Devices;
 using UltimateXR;
+using TMPro;
+
 
 
 public class ssrScript : MonoBehaviour {
     
     public GameObject hihat;
-
     public GameObject menuTitleUI;
     public GameObject startButtonUI;
     public GameObject tutorialButtonUI;
@@ -21,8 +22,9 @@ public class ssrScript : MonoBehaviour {
     public GameObject ssRInProgressUI;
     public GameObject timeLeftTextUI;
     public GameObject rudimentCompleteUI;
-
     public GameObject timeLeftDisplayText;
+    public GameObject accuracyTitle;
+    public GameObject accuracyDisplayText;
 
     public GameObject rightStick;
     private RightStickManager RscriptManager;
@@ -36,22 +38,27 @@ public class ssrScript : MonoBehaviour {
     public AudioClip input8;
     public AudioSource Kick;
 
-    private float soundStart = 0f;
-    private float soundCooldown = 0.4f;
-
     public Animation kickAnimation;
 
     public bool isPressed;
-
     private bool pressed = false;
-
     public bool startButton = false;
+
+    private float soundStart = 0f;
+    private float soundCooldown = 0.4f;
+    public float finaltotal;
+    public float finalcorrect;
+    public float accuracy = 0;
+
+    public TextMeshProUGUI accuracyText;
+
 
 
     void Start() {
         RscriptManager = rightStick.GetComponent<RightStickManager>();
         LscriptManager = leftStick.GetComponent<LeftStickManager>();
         timerscriptManager = timerObject.GetComponent<TimerScript>();
+        accuracy = 0;
 
     }
 
@@ -93,7 +100,21 @@ public class ssrScript : MonoBehaviour {
             timeLeftTextUI.SetActive(false);
             timeLeftDisplayText.SetActive(false);
             rudimentCompleteUI.SetActive(true);
+            backButtonUI.SetActive(true);
+            accuracyTitle.SetActive(true);
+            accuracyDisplayText.SetActive(true);
         }
+
+        finaltotal = RscriptManager.total + LscriptManager.total;
+        finalcorrect = RscriptManager.correct + LscriptManager.correct;
+        accuracy = (finalcorrect / finaltotal) * 100;
+        accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");
+        Debug.Log("The accuracy is: " + accuracy);
+        Debug.Log("The final total is " + finaltotal);
+        Debug.Log("The final correct is " + finalcorrect);
+        Debug.Log("The right total is " + RscriptManager.total);
+        Debug.Log("The left total is " + LscriptManager.total);
+
 
 }
 
@@ -137,6 +158,37 @@ public class ssrScript : MonoBehaviour {
         ssRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
     }
+
+    public void backButtonFunc()
+    {
+        if (pressed)
+        {
+            return;
+        }
+
+        pressed = true;
+        StartCoroutine(PressCooldown());
+
+        accuracy = 0;
+        finalcorrect = 0;
+        finaltotal = 0;
+        RscriptManager.total = 0;
+        RscriptManager.correct = 0;
+        LscriptManager.total = 0;
+        LscriptManager.correct = 0;
+
+        menuTitleUI.SetActive(true);
+        tutorialButtonUI.SetActive(true);
+        lobbyButtonUI.SetActive(true);
+        sSRTutorialTitleUI.SetActive(false);
+        backButtonUI.SetActive(false);
+        ssRInProgressUI.SetActive(false);
+        timeLeftTextUI.SetActive(false);
+        accuracyDisplayText.SetActive(false);
+        accuracyTitle.SetActive(false);
+
+    }
+
 
     IEnumerator PressCooldown()
         {
