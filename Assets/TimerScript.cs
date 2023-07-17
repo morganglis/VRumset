@@ -7,7 +7,7 @@ using TMPro;
 public class TimerScript : MonoBehaviour
 {
     public float timeRemaining = 180;
-    public bool timerIsRunning = false;
+    public bool timerIsRunning;
 
     public GameObject ssrManager;
     private ssrScript scriptManager;
@@ -16,10 +16,13 @@ public class TimerScript : MonoBehaviour
 
     public GameObject rightRingModel;
     public GameObject leftRingModel;
+    public GameObject startRingModel;
 
     public GameObject rudimentCompleteUI;
 
     public TextMeshProUGUI timeText;
+
+    public GameObject leftRingPointCollider;
 
     private void Start()
     {
@@ -29,12 +32,15 @@ public class TimerScript : MonoBehaviour
     {
         if (scriptManager.startButton == true)
         {
+            startRingModel.SetActive(true);
             leftRingModel.SetActive(true);
 
             if (timeRemaining > 0)
             {
+                timerIsRunning = true;
                 if (rightRingModel.activeSelf)
                 {
+                    startRingModel.SetActive(false);
                     leftRingModel.SetActive(false);
                 }
                 
@@ -47,7 +53,6 @@ public class TimerScript : MonoBehaviour
                 timerIsRunning = false;
                 leftRingModel.SetActive(false);
                 rightRingModel.SetActive(false);
-                rudimentCompleteUI.SetActive(true);
             }
         }
     }

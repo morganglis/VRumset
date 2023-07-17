@@ -53,9 +53,18 @@ public class RightStickManager : MonoBehaviour
     public GameObject ssrManager;
     private ssrScript scriptManager;
 
+    public GameObject timerObject;
+    private TimerScript timerscriptManager;
+
+    public GameObject leftRingPointCollider;
+
+    public GameObject rightRingPointCollider;
+
 
     void Start() {
         scriptManager = ssrManager.GetComponent<ssrScript>();
+        timerscriptManager = timerObject.GetComponent<TimerScript>();
+
 
 
     }
@@ -135,31 +144,44 @@ public class RightStickManager : MonoBehaviour
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-        if (col.gameObject.tag == "rightRing") 
-        {
-            StartCoroutine(rightHitCooldown());
-        }
+       if (col.gameObject.tag == "rightRing") 
+            {
+                timerscriptManager.startRingModel.SetActive(false);
+                rightRingModel.SetActive(false);
+                leftRingModel.SetActive(true);
+                StartCoroutine(rightHitCooldown());
+            }
 
-        if (col.gameObject.tag == "leftRing") {
-            StartCoroutine(leftHitCooldown());
-        }
-    }
+        if (col.gameObject.tag == "leftRing") 
+            {
+                timerscriptManager.startRingModel.SetActive(false);
+                StartCoroutine(secondRightHitCooldown());
+            }
 
-    IEnumerator rightHitCooldown()
-        {
-            rightRingModel.SetActive(false);
-            yield return new WaitForSecondsRealtime(0.3f);
-            leftRingModel.SetActive(true);
+        if(col.gameObject.tag == "rightRingPointCollider") {
+            rightRingPointCollider.SetActive(false);
             total += 1;
-            correct +=1;
-            
+            correct += 1;
+        }
+
+        if(col.gameObject.tag == "leftRingPointCollider") {
+            leftRingPointCollider.SetActive(false);
+            total += 1;
 
         }
 
-    IEnumerator leftHitCooldown()
-    {
-        total += 1;
-        yield return new WaitForSecondsRealtime(0.3f);
 
     }
+
+    IEnumerator rightHitCooldown() {
+        yield return new WaitForSecondsRealtime(0.4f);
+        leftRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator secondRightHitCooldown() {
+        yield return new WaitForSecondsRealtime(0.4f);
+        leftRingPointCollider.SetActive(true);
+
+    }
+
 }
