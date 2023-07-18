@@ -55,10 +55,7 @@ public class LeftStickManager : MonoBehaviour
 
     void Start() {
         timerscriptManager = timerObject.GetComponent<TimerScript>();
-
     }
-
-
 
     void Update() {
         if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
@@ -143,7 +140,6 @@ public class LeftStickManager : MonoBehaviour
         
         if (col.gameObject.tag == "leftRing") 
             {
-                timerscriptManager.startRingModel.SetActive(false);
                 leftRingModel.SetActive(false);
                 rightRingModel.SetActive(true);
                 StartCoroutine(lefthitCoolDown());
@@ -151,7 +147,6 @@ public class LeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "rightRing") 
             {
-                timerscriptManager.startRingModel.SetActive(false);
                 StartCoroutine(leftsecondhitCooldown());
             }
 
@@ -171,12 +166,12 @@ public class LeftStickManager : MonoBehaviour
     }
 
     IEnumerator lefthitCoolDown() {
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(0.3f);
         rightRingPointCollider.SetActive(true);
     }
 
     IEnumerator leftsecondhitCooldown() {
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(0.3f);
         rightRingPointCollider.SetActive(true);
 
     }

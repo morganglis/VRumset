@@ -146,7 +146,6 @@ public class RightStickManager : MonoBehaviour
 
        if (col.gameObject.tag == "rightRing") 
             {
-                timerscriptManager.startRingModel.SetActive(false);
                 rightRingModel.SetActive(false);
                 leftRingModel.SetActive(true);
                 StartCoroutine(rightHitCooldown());
@@ -154,7 +153,6 @@ public class RightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "leftRing") 
             {
-                timerscriptManager.startRingModel.SetActive(false);
                 StartCoroutine(secondRightHitCooldown());
             }
 
@@ -174,12 +172,12 @@ public class RightStickManager : MonoBehaviour
     }
 
     IEnumerator rightHitCooldown() {
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(0.3f);
         leftRingPointCollider.SetActive(true);
     }
 
     IEnumerator secondRightHitCooldown() {
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(0.3f);
         leftRingPointCollider.SetActive(true);
 
     }

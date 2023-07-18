@@ -95,7 +95,7 @@ public class ssrScript : MonoBehaviour {
              hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);
     }
 
-        if (timerscriptManager.timerIsRunning == false && timerscriptManager.timeRemaining == 0) {
+        if (timerscriptManager.timeRemaining == 0) {
             ssRInProgressUI.SetActive(false);
             timeLeftTextUI.SetActive(false);
             timeLeftDisplayText.SetActive(false);
@@ -109,7 +109,6 @@ public class ssrScript : MonoBehaviour {
         finalcorrect = RscriptManager.correct + LscriptManager.correct;
         accuracy = (finalcorrect / finaltotal) * 100;
         accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");
-        Debug.Log("The accuracy is: " + accuracy);
         Debug.Log("The final total is " + finaltotal);
         Debug.Log("The final correct is " + finalcorrect);
         Debug.Log("The right total is " + RscriptManager.total);
@@ -137,14 +136,6 @@ public class ssrScript : MonoBehaviour {
         ssRInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
         timeLeftDisplayText.SetActive(true);
-    }
-
-    public void startButtonFuncRelease() {
-        if (pressed) {
-            return;
-        }
-
-        startButton = false;
     }
 
     public void tutorialButtonFunc()
@@ -182,6 +173,7 @@ public class ssrScript : MonoBehaviour {
         RscriptManager.correct = 0;
         LscriptManager.total = 0;
         LscriptManager.correct = 0;
+        timerscriptManager.timeRemaining = 60;
 
         menuTitleUI.SetActive(true);
         tutorialButtonUI.SetActive(true);
