@@ -33,9 +33,9 @@ public class RightStickManager : MonoBehaviour
     public AudioClip input9;
     public AudioSource HiHatClosed;
 
-    public bool isPressed;
+    public bool isPressed;  // isPressed is a bool that is important to the functionality of a closed vs. open hi hat
 
-    private float soundStart = 0f;
+    private float soundStart = 0f;  // Important variables to ensure that our drum heads and cymbals all have cooldowns and can't just make repeated nonsense noise
     private float soundCooldown = 0.4f;
 
     public Animation crashAnimation;
@@ -44,9 +44,7 @@ public class RightStickManager : MonoBehaviour
     public GameObject rightRingModel;
     public GameObject leftRingModel;
 
-    public float timeRemaining = 3f * 60f;
-    public bool counterRunning = false;
-
+    public float timeRemaining;
     public float total = 0;
     public float correct = 0;
 
@@ -57,39 +55,35 @@ public class RightStickManager : MonoBehaviour
     private TimerScript timerscriptManager;
 
     public GameObject leftRingPointCollider;
-
     public GameObject rightRingPointCollider;
 
 
-    void Start() {
-        scriptManager = ssrManager.GetComponent<ssrScript>();
-        timerscriptManager = timerObject.GetComponent<TimerScript>();
-
-
-
+    void Start() 
+    {
+        scriptManager = ssrManager.GetComponent<ssrScript>();   // Grab our ssrManager script
+        timerscriptManager = timerObject.GetComponent<TimerScript>();   // Grab our timer script
     }
 
-    void Update() {
-
-
-        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
+    void Update() 
+    {
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))  // If the left controller trigger is pressed
+        {
             isPressed = true;
         }
 
-        else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) {
+        else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) // If the left controller trigger is not pressed
+        {
             isPressed = false;
         }
+    }  
 
-        }
-        
-
-    void OnCollisionEnter(Collision col) 
+    void OnCollisionEnter(Collision col) // The big collider method which associates all our drum head & cymbal colliders and what sound/animation they should play when struck by the right stick
     {
-        if (col.gameObject.tag == "Snare" && Time.time > soundStart + soundCooldown) 
+        if (col.gameObject.tag == "Snare" && Time.time > soundStart + soundCooldown)    // This ensures that our right stick is colliding with the snare and ensures that the sound and haptic feedback is not sent back unless the cooldown has succeeded
         {
-            Snare.PlayOneShot(input);
-            soundStart = Time.time;
-            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
+            Snare.PlayOneShot(input);   // PlayOneShot plays the audio once so we don't have audio interruptions by too quick of hits
+            soundStart = Time.time; // Resets our soundStart to the current time
+            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); // Sends haptic feedback to the right controller on collision
         }
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && !(isPressed)) 
@@ -104,7 +98,7 @@ public class RightStickManager : MonoBehaviour
             HiHatClosed.pitch = Random.Range(0.8f,1.2f);
             HiHatClosed.PlayOneShot(input9);
             soundStart = Time.time;
-            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
+            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
         if (col.gameObject.tag == "Crash1" && Time.time > soundStart + soundCooldown) 
@@ -144,42 +138,35 @@ public class RightStickManager : MonoBehaviour
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-       if (col.gameObject.tag == "rightRing") 
-            {
-                rightRingModel.SetActive(false);
-                leftRingModel.SetActive(true);
-                StartCoroutine(rightHitCooldown());
-            }
-
-        if (col.gameObject.tag == "leftRing") 
-            {
-                StartCoroutine(secondRightHitCooldown());
-            }
-
-        if(col.gameObject.tag == "rightRingPointCollider") {
-            rightRingPointCollider.SetActive(false);
-            total += 1;
-            correct += 1;
+       if (col.gameObject.tag == "rightRing")   // If the collision (a correct one) occurs with the right ring
+        {
+            rightRingModel.SetActive(false); // The right ring is set to inactive
+            leftRingModel.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(rightHitCooldown()); // A cooldown coroutine begins to ensure that points cannot get doubled by the next collider appearing to quickly while the drum stick is still in the down position
         }
 
-        if(col.gameObject.tag == "leftRingPointCollider") {
-            leftRingPointCollider.SetActive(false);
-            total += 1;
-
+        if (col.gameObject.tag == "leftRing") // If the collision (a wrong one) occurs with the left ring
+        {
+            StartCoroutine(rightHitCooldown());   // The cooldown coroutine is called
         }
 
+        if(col.gameObject.tag == "rightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
+        {
+            rightRingPointCollider.SetActive(false);    // The right ring point collider state is now inactive
+            total += 1; // Total points increments by one
+            correct += 1;   // Correct points increments by one
+        }
 
+        if(col.gameObject.tag == "leftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
+        {
+            leftRingPointCollider.SetActive(false); // The left ring point collider state is set to inactive
+            total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
+        }
     }
 
-    IEnumerator rightHitCooldown() {
+    IEnumerator rightHitCooldown() 
+    {
         yield return new WaitForSecondsRealtime(0.3f);
         leftRingPointCollider.SetActive(true);
     }
-
-    IEnumerator secondRightHitCooldown() {
-        yield return new WaitForSecondsRealtime(0.3f);
-        leftRingPointCollider.SetActive(true);
-
-    }
-
 }

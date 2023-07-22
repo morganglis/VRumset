@@ -8,8 +8,6 @@ using UltimateXR.Devices;
 using UltimateXR;
 using TMPro;
 
-
-
 public class ssrScript : MonoBehaviour {
     
     public GameObject hihat;
@@ -35,67 +33,70 @@ public class ssrScript : MonoBehaviour {
     public GameObject timerObject;
     private TimerScript timerscriptManager;
 
-    public AudioClip input8;
+    public AudioClip input1;
     public AudioSource Kick;
+
+    public AudioClip input2;
+    public AudioSource hihatCloseInput;
 
     public Animation kickAnimation;
 
     public bool isPressed;
     private bool pressed = false;
     public bool startButton = false;
-
     private float soundStart = 0f;
     private float soundCooldown = 0.4f;
     public float finaltotal;
     public float finalcorrect;
-    public float accuracy = 0;
+    public float accuracy;
 
     public TextMeshProUGUI accuracyText;
 
-
-
-    void Start() {
+    void Start() 
+    {
         RscriptManager = rightStick.GetComponent<RightStickManager>();
         LscriptManager = leftStick.GetComponent<LeftStickManager>();
         timerscriptManager = timerObject.GetComponent<TimerScript>();
         accuracy = 0;
-
     }
 
     void Update()
     {
-        
         if (UxrAvatar.LocalAvatarInput.GetButtonsPressDown(UxrHandSide.Right, UxrInputButtons.Trigger) && Time.time > soundStart + soundCooldown) 
-    {
-
+        {
             kickAnimation.Play();
-            Kick.pitch = Random.Range(0.8f,1.2f);
-            Kick.PlayOneShot(input8);
+            Kick.pitch = Random.Range(0.8f, 1.2f);
+            Kick.PlayOneShot(input1);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f);
-
-    }
-
-        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) {
-            isPressed = true;
-        
         }
 
-        else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) {
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPressDown(UxrHandSide.Left, UxrInputButtons.Trigger) && Time.time > soundStart + soundCooldown) 
+        {
+            hihatCloseInput.PlayOneShot(input2);
+            soundStart = Time.time;
+        }
+
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) 
+        {
+            isPressed = true;        
+        }
+
+        else if (!(UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger))) 
+        {
             isPressed = false;
-        
         }
 
-         if (isPressed) {
-            
-             hihat.transform.position = new Vector3(2.4866f, 93.6796f, -0.8179f);
-         }
+        if (isPressed) {
+            hihat.transform.position = new Vector3(2.4866f, 93.6796f, -0.8179f);
+        }
 
-         else if (!isPressed) {
-             hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);
-    }
+        else if (!isPressed) {
+            hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);
+        }
 
-        if (timerscriptManager.timeRemaining == 0) {
+        if (timerscriptManager.timeRemaining == 0) 
+        {
             ssRInProgressUI.SetActive(false);
             timeLeftTextUI.SetActive(false);
             timeLeftDisplayText.SetActive(false);
@@ -109,12 +110,7 @@ public class ssrScript : MonoBehaviour {
         finalcorrect = RscriptManager.correct + LscriptManager.correct;
         accuracy = (finalcorrect / finaltotal) * 100;
         accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");
-        Debug.Log("The final total is " + finaltotal);
-        Debug.Log("The final correct is " + finalcorrect);
-        Debug.Log("The right total is " + RscriptManager.total);
-        Debug.Log("The left total is " + LscriptManager.total);
-
-}
+    }
 
     public void startButtonFunc()
     {
@@ -174,7 +170,6 @@ public class ssrScript : MonoBehaviour {
         LscriptManager.total = 0;
         LscriptManager.correct = 0;
         timerscriptManager.timeRemaining = 60;
-
         menuTitleUI.SetActive(true);
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
@@ -189,11 +184,9 @@ public class ssrScript : MonoBehaviour {
 
     }
 
-
     IEnumerator PressCooldown()
         {
             yield return new WaitForSecondsRealtime(1.5f);
             pressed = false;
         }
-
 }

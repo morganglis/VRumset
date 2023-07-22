@@ -12,63 +12,61 @@ public class TimerScript : MonoBehaviour
     public GameObject ssrManager;
     private ssrScript scriptManager;
 
-    private UIButtonScript buttonscript;
-
+    public GameObject leftRingPointCollider;
     public GameObject rightRingModel;
     public GameObject leftRingModel;
-
-    public GameObject rudimentCompleteUI;
     public GameObject ssRInProgressUI;
 
     public TextMeshProUGUI timeText;
 
-    public GameObject leftRingPointCollider;
-
-    public bool startFlag;
+    public AudioClip input;
+    public AudioSource Success;
 
     private void Start()
     {
-        scriptManager = ssrManager.GetComponent<ssrScript>();
+        scriptManager = ssrManager.GetComponent<ssrScript>(); // Grab out ssrManagerScript
     }
+
     void Update()
     {
-        if (scriptManager.startButton == true)
+        if (scriptManager.startButton == true)  // If the start button has been pressed
         {
-            leftRingModel.SetActive(true);
-            leftRingPointCollider.SetActive(true);
-            scriptManager.startButton = false;
-            if (rightRingModel.activeSelf)
+            leftRingModel.SetActive(true);  // Left ring model will now appear
+            leftRingPointCollider.SetActive(true);  // Left ring collider will also appear
+            scriptManager.startButton = false;  // Start button state is now set to false
+
+            if (rightRingModel.activeSelf)  // Ensures that if the right ring model is active, then the left model and collider are not
             {
                 leftRingModel.SetActive(false);
                 leftRingPointCollider.SetActive(false);
             }
         }
 
-        if(ssRInProgressUI.activeSelf == true) {
+        if(ssRInProgressUI.activeSelf == true) {    // If the text "In Progress..." is currently active
             
-            if (timeRemaining > 0)
-
+            if (timeRemaining > 0)  // If the time remaining is above 0, the timeRemaining variable will begin to count down and displayed
             {
                 timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
+                DisplayTime(timeRemaining); // Pass our timeRemaining variable into our time display method
             }
-        else
+
+            else    // If the time remaining is not above zero, then the timeRemaining is 0 and both rings states are set to inactive
             {
                 timeRemaining = 0;
                 timerIsRunning = false;
+                Success.PlayOneShot(input);
                 leftRingModel.SetActive(false);
                 rightRingModel.SetActive(false);
-                startFlag = false;
-            }}
 
-        
+            }
+        }
     }
 
-    void DisplayTime(float timeToDisplay)
+    void DisplayTime(float timeToDisplay) // Method to display the countdown timer
     {
-        timeToDisplay += 1;
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+        timeToDisplay += 1;     // Counts up by 1 as the timeRemaining counts down in order for the time to be displayed as a countDOWN
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);   // Converts our calculated minutes and seconds to string format and displays them like "0:00"
     }
 }
