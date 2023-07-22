@@ -164,7 +164,7 @@ public class RightStickManager : MonoBehaviour
         }
     }
 
-    IEnumerator rightHitCooldown() 
+    IEnumerator rightHitCooldown() // Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
         yield return new WaitForSecondsRealtime(0.3f);
         leftRingPointCollider.SetActive(true);

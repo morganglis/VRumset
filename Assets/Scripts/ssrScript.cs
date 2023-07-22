@@ -54,21 +54,21 @@ public class ssrScript : MonoBehaviour {
 
     void Start() 
     {
-        RscriptManager = rightStick.GetComponent<RightStickManager>();
-        LscriptManager = leftStick.GetComponent<LeftStickManager>();
-        timerscriptManager = timerObject.GetComponent<TimerScript>();
-        accuracy = 0;
+        RscriptManager = rightStick.GetComponent<RightStickManager>(); // Grab our right stick script
+        LscriptManager = leftStick.GetComponent<LeftStickManager>();    // Grab our left stick script
+        timerscriptManager = timerObject.GetComponent<TimerScript>();   // Grab our timer script
+        accuracy = 0;   // Ensure accuracy is set to 0
     }
 
     void Update()
     {
-        if (UxrAvatar.LocalAvatarInput.GetButtonsPressDown(UxrHandSide.Right, UxrInputButtons.Trigger) && Time.time > soundStart + soundCooldown) 
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPressDown(UxrHandSide.Right, UxrInputButtons.Trigger) && Time.time > soundStart + soundCooldown) // Determines if the right trigger is being pressed and ensures a cooldown so that the kick sound/animation does not play nonsense
         {
-            kickAnimation.Play();
-            Kick.pitch = Random.Range(0.8f, 1.2f);
-            Kick.PlayOneShot(input1);
+            kickAnimation.Play();   // Plays our kick animation
+            Kick.pitch = Random.Range(0.8f, 1.2f);  // Puts a bit of variety in the pitch of the sound of the kick
+            Kick.PlayOneShot(input1);   // Plays the sound of the kick
             soundStart = Time.time;
-            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f);
+            UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); // Sends haptic feedback to our left controller
         }
 
         if (UxrAvatar.LocalAvatarInput.GetButtonsPressDown(UxrHandSide.Left, UxrInputButtons.Trigger) && Time.time > soundStart + soundCooldown) 
@@ -77,7 +77,7 @@ public class ssrScript : MonoBehaviour {
             soundStart = Time.time;
         }
 
-        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) 
+        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UxrHandSide.Left, UxrInputButtons.Trigger)) // Determines if the left rigger is being pressed
         {
             isPressed = true;        
         }
@@ -87,15 +87,17 @@ public class ssrScript : MonoBehaviour {
             isPressed = false;
         }
 
-        if (isPressed) {
-            hihat.transform.position = new Vector3(2.4866f, 93.6796f, -0.8179f);
+        if (isPressed)  // If the right trigger has been pressed it closes the hi hat
+        {
+            hihat.transform.position = new Vector3(2.4866f, 93.6796f, -0.8179f);    // Puts the top of the hi hat in a new position
         }
 
-        else if (!isPressed) {
-            hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);
+        else if (!isPressed) 
+        {
+            hihat.transform.position = new Vector3(2.486763f, 93.70355f, -0.8180155f);  // If the right trigger is not being pressed then the hi hat stays open
         }
 
-        if (timerscriptManager.timeRemaining == 0) 
+        if (timerscriptManager.timeRemaining == 0)  // If the timeRemaining variable from the timer script is zero, UI accuracy info is displayed
         {
             ssRInProgressUI.SetActive(false);
             timeLeftTextUI.SetActive(false);
@@ -106,13 +108,13 @@ public class ssrScript : MonoBehaviour {
             accuracyDisplayText.SetActive(true);
         }
 
-        finaltotal = RscriptManager.total + LscriptManager.total;
-        finalcorrect = RscriptManager.correct + LscriptManager.correct;
-        accuracy = (finalcorrect / finaltotal) * 100;
-        accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");
+        finaltotal = RscriptManager.total + LscriptManager.total;   // Calculates our final total from the right and left stick hits
+        finalcorrect = RscriptManager.correct + LscriptManager.correct;     // Calculates our final correct total from right and left sticks
+        accuracy = (finalcorrect / finaltotal) * 100;   // Divide the correct number of hits by the total number of hits and multiply by 100 to get the accuracy
+        accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");  // Format how the accuracy variable should display
     }
 
-    public void startButtonFunc()
+    public void startButtonFunc()   // Controls what happens when the start button is pressed
     {
         if (pressed)
         {
@@ -153,6 +155,26 @@ public class ssrScript : MonoBehaviour {
         timeLeftTextUI.SetActive(false);
     }
 
+    public void lobbyButtonFunc()
+    {
+        if (pressed)
+        {
+            return;
+        }
+
+        pressed = true;
+        StartCoroutine(PressCooldown());
+
+        menuTitleUI.SetActive(false);
+        tutorialButtonUI.SetActive(false);
+        lobbyButtonUI.SetActive(false);
+        sSRTutorialTitleUI.SetActive(true);
+        backButtonUI.SetActive(true);
+        ssRInProgressUI.SetActive(false);
+        timeLeftTextUI.SetActive(false);
+        
+    }
+
     public void backButtonFunc()
     {
         if (pressed)
@@ -184,9 +206,9 @@ public class ssrScript : MonoBehaviour {
 
     }
 
-    IEnumerator PressCooldown()
-        {
-            yield return new WaitForSecondsRealtime(1.5f);
-            pressed = false;
-        }
+    IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        pressed = false;
+    }
 }
