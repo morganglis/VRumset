@@ -23,6 +23,8 @@ public class ssrScript : MonoBehaviour {
     public GameObject timeLeftDisplayText;
     public GameObject accuracyTitle;
     public GameObject accuracyDisplayText;
+    public GameObject lobbyConfirmUI;
+    public GameObject lobbyConfirmButtonUI;
 
     public GameObject rightStick;
     private RightStickManager RscriptManager;
@@ -168,11 +170,16 @@ public class ssrScript : MonoBehaviour {
         menuTitleUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        sSRTutorialTitleUI.SetActive(true);
+        startButtonUI.SetActive(false);
+        sSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(true);
         ssRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
+        lobbyConfirmButtonUI.SetActive(true);
+        lobbyConfirmUI.SetActive(true);
+        backButtonUI.SetActive(true);
         
+
     }
 
     public void backButtonFunc()
@@ -203,6 +210,10 @@ public class ssrScript : MonoBehaviour {
         accuracyDisplayText.SetActive(false);
         accuracyTitle.SetActive(false);
         rudimentCompleteUI.SetActive(false);
+        lobbyConfirmButtonUI.SetActive(false);
+        lobbyConfirmUI.SetActive(false);
+
+
 
     }
 
