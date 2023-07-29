@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 589bf37738c85224c8419d2904b93812
+  - enabled: 1
+    path: Assets/Scenes/ssrScene.unity
+    guid: 1c59a4572ee518640b77587e76259ae4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfa7cbb9626ac1e41a5192f3091d0bf5, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 3ff5c2234265384439b040bde67184ec, type: 2}

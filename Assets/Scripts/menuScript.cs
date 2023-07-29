@@ -127,6 +127,7 @@ public class menuScript : MonoBehaviour
         fConfirmButton.SetActive(false);
         pConfirmButton.SetActive(false);
         dpConfirmButton.SetActive(false);
+        confirmBanner.SetActive(false);
 
         videoPlayer.SetActive(false);
         rudimentBanner.SetActive(false);
@@ -149,9 +150,16 @@ public class menuScript : MonoBehaviour
         confirmBanner.SetActive(true);
         ssrConfirmButton.SetActive(true);
         backButton.SetActive(true);
+        rudimentBanner.SetActive(false);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
         freePlayButton.SetActive(false);
+        ssrButton.SetActive(false);
+        dsrButton.SetActive(false);
+        fButton.SetActive(false);
+        pButton.SetActive(false);
+        dpButton.SetActive(false);
+
     }
 
     public void dsrConfirm()
