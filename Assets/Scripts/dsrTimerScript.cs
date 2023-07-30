@@ -12,9 +12,16 @@ public class dsrTimerScript : MonoBehaviour
     public GameObject dsrManager;
     private dsrScript scriptManager;
 
-    public GameObject leftRingPointCollider;
     public GameObject rightRingModel;
+    public GameObject secondrightRingModel;
     public GameObject leftRingModel;
+    public GameObject secondleftRingModel;
+
+    public GameObject rightRingPointCollider;
+    public GameObject secondRightRingPointCollider;
+
+    public GameObject leftRingPointCollider;
+    public GameObject secondLeftRingPointCollider;
     public GameObject dsRInProgressUI;
 
     public TextMeshProUGUI timeText;
@@ -35,7 +42,7 @@ public class dsrTimerScript : MonoBehaviour
             leftRingPointCollider.SetActive(true);  // Left ring collider will also appear
             scriptManager.startButton = false;  // Start button state is now set to false
 
-            if (rightRingModel.activeSelf)  // Ensures that if the right ring model is active, then the left model and collider are not
+            if (rightRingModel.activeSelf || secondrightRingModel.activeSelf || secondleftRingModel.activeSelf)  // Ensures that if the right ring model is active, then the left model and collider are not
             {
                 leftRingModel.SetActive(false);
                 leftRingPointCollider.SetActive(false);
@@ -57,6 +64,13 @@ public class dsrTimerScript : MonoBehaviour
                 Success.PlayOneShot(input);
                 leftRingModel.SetActive(false);
                 rightRingModel.SetActive(false);
+                secondleftRingModel.SetActive(false);
+                secondrightRingModel.SetActive(false);
+                leftRingPointCollider.SetActive(false);
+                rightRingPointCollider.SetActive(false);
+                secondRightRingPointCollider.SetActive(false);
+                secondLeftRingPointCollider.SetActive(false);
+
 
             }
         }

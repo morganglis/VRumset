@@ -146,24 +146,17 @@ public class dsrLeftStickManager : MonoBehaviour
         {
             leftRingModel.SetActive(false);
             secondLeftRingModel.SetActive(true);
-            StartCoroutine(lefthitCoolDown());
-        }
-
-        if (col.gameObject.tag == "secondLeftRing")
-        {
-            secondLeftRingModel.SetActive(false);
-            rightRingModel.SetActive(true);
-            StartCoroutine(secondlefthitCoolDown());
+            StartCoroutine(leftSecondCooldown());
         }
 
         if (col.gameObject.tag == "rightRing") 
         {
-            StartCoroutine(lefthitCoolDown());
+            StartCoroutine(lefthitCooldown());
         }
 
         if (col.gameObject.tag == "secondRightRing") 
         {
-            StartCoroutine(secondlefthitCoolDown());
+            StartCoroutine(leftThirdCooldown());
         }
 
         if(col.gameObject.tag == "leftRingPointCollider") 
@@ -175,6 +168,9 @@ public class dsrLeftStickManager : MonoBehaviour
 
         if(col.gameObject.tag == "secondleftRingPointCollider") 
         {
+            rightRingModel.SetActive(true);
+            StartCoroutine(lefthitCooldown());
+            secondLeftRingModel.SetActive(false);
             secondLeftRingPointCollider.SetActive(false);
             total += 1;
             correct += 1;
@@ -193,13 +189,19 @@ public class dsrLeftStickManager : MonoBehaviour
         }
     }
 
-    IEnumerator lefthitCoolDown() 
+    IEnumerator lefthitCooldown() 
     {
         yield return new WaitForSecondsRealtime(0.3f);
         rightRingPointCollider.SetActive(true);
     }
 
-    IEnumerator secondlefthitCoolDown() 
+    IEnumerator leftSecondCooldown() 
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        secondLeftRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator leftThirdCooldown() 
     {
         yield return new WaitForSecondsRealtime(0.3f);
         secondRightRingPointCollider.SetActive(true);

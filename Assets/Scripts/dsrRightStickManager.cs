@@ -42,7 +42,9 @@ public class dsrRightStickManager : MonoBehaviour
     public Animation rideAnimation;
 
     public GameObject rightRingModel;
+    public GameObject secondRightRingModel;
     public GameObject leftRingModel;
+    public GameObject secondLeftRingModel;
 
     public float timeRemaining;
     public float total = 0;
@@ -55,7 +57,9 @@ public class dsrRightStickManager : MonoBehaviour
     private dsrTimerScript timerscriptManager;
 
     public GameObject leftRingPointCollider;
+    public GameObject secondleftRingPointCollider;
     public GameObject rightRingPointCollider;
+    public GameObject secondrightRingPointCollider;
 
 
     void Start() 
@@ -141,13 +145,18 @@ public class dsrRightStickManager : MonoBehaviour
        if (col.gameObject.tag == "rightRing")   // If the collision (a correct one) occurs with the right ring
         {
             rightRingModel.SetActive(false); // The right ring is set to inactive
-            leftRingModel.SetActive(true);  // The left ring is now set to active
-            StartCoroutine(rightHitCooldown()); // A cooldown coroutine begins to ensure that points cannot get doubled by the next collider appearing to quickly while the drum stick is still in the down position
+            secondRightRingModel.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(rightSecondCooldown()); // A cooldown coroutine begins to ensure that points cannot get doubled by the next collider appearing to quickly while the drum stick is still in the down position
         }
 
         if (col.gameObject.tag == "leftRing") // If the collision (a wrong one) occurs with the left ring
         {
             StartCoroutine(rightHitCooldown());   // The cooldown coroutine is called
+        }
+
+        if (col.gameObject.tag == "secondLeftRing") // If the collision (a wrong one) occurs with the left ring
+        {
+            StartCoroutine(rightThirdCooldown());   // The cooldown coroutine is called
         }
 
         if(col.gameObject.tag == "rightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
@@ -157,9 +166,25 @@ public class dsrRightStickManager : MonoBehaviour
             correct += 1;   // Correct points increments by one
         }
 
+        if(col.gameObject.tag == "secondrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
+        {
+            StartCoroutine(rightHitCooldown());
+            leftRingModel.SetActive(true);
+            secondRightRingModel.SetActive(false);
+            secondrightRingPointCollider.SetActive(false);    // The right ring point collider state is now inactive
+            total += 1; // Total points increments by one
+            correct += 1;   // Correct points increments by one
+        }
+
         if(col.gameObject.tag == "leftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
         {
             leftRingPointCollider.SetActive(false); // The left ring point collider state is set to inactive
+            total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
+        }
+
+        if(col.gameObject.tag == "secondleftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
+        {
+            secondleftRingPointCollider.SetActive(false); // The left ring point collider state is set to inactive
             total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
         }
     }
@@ -168,5 +193,17 @@ public class dsrRightStickManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.3f);
         leftRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator rightSecondCooldown() // Second Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        secondrightRingPointCollider.SetActive(true);
+    }
+
+     IEnumerator rightThirdCooldown() // Third Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        secondleftRingPointCollider.SetActive(true);
     }
 }

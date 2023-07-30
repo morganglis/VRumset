@@ -647,14 +647,18 @@ MonoBehaviour:
   crashAnimation: {fileID: 1087872341}
   rideAnimation: {fileID: 1707400408}
   rightRingModel: {fileID: 1354472191}
+  secondRightRingModel: {fileID: 1341167051}
   leftRingModel: {fileID: 1869581728486969306}
+  secondLeftRingModel: {fileID: 1785543304}
   timeRemaining: 0
   total: 0
   correct: 0
   dsrManager: {fileID: 1932347946}
   timerObject: {fileID: 1490159197}
   leftRingPointCollider: {fileID: 806272292}
+  secondleftRingPointCollider: {fileID: 1160862656}
   rightRingPointCollider: {fileID: 642696570}
+  secondrightRingPointCollider: {fileID: 1991054690}
 --- !u!1 &38824670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,7 +2152,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31958f90e11569142ae7f4eb1035b94e, type: 2}
+  - {fileID: 2100000, guid: 4bc48799a272a5144bdb917568618aeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2766,7 +2770,7 @@ GameObject:
   - component: {fileID: 516434885}
   m_Layer: 0
   m_Name: leftRingCollider
-  m_TagString: leftRing
+  m_TagString: secondLeftRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4899,7 +4903,7 @@ GameObject:
   - component: {fileID: 1288331209}
   m_Layer: 0
   m_Name: rightRingCollider
-  m_TagString: rightRing
+  m_TagString: secondRightRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5203,7 +5207,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e7a852e1a773fa44fb8b4bfae37790a7, type: 2}
+  - {fileID: 2100000, guid: 2aa330e6da6b3244382185f797ad356e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5856,9 +5860,14 @@ MonoBehaviour:
   timeRemaining: 60
   timerIsRunning: 0
   dsrManager: {fileID: 1932347946}
-  leftRingPointCollider: {fileID: 806272292}
   rightRingModel: {fileID: 1354472191}
+  secondrightRingModel: {fileID: 1341167051}
   leftRingModel: {fileID: 1869581728486969306}
+  secondleftRingModel: {fileID: 1785543304}
+  rightRingPointCollider: {fileID: 642696570}
+  secondRightRingPointCollider: {fileID: 1991054690}
+  leftRingPointCollider: {fileID: 806272292}
+  secondLeftRingPointCollider: {fileID: 1160862656}
   dsRInProgressUI: {fileID: 195104733}
   timeText: {fileID: 1308863798}
   input: {fileID: 8300000, guid: 36c33be35da263344a345d49229e7b28, type: 3}
@@ -9513,16 +9522,16 @@ MonoBehaviour:
   crashAnimation: {fileID: 1087872341}
   rideAnimation: {fileID: 1707400408}
   rightRingModel: {fileID: 1354472191}
-  secondRightRingModel: {fileID: 0}
+  secondRightRingModel: {fileID: 1341167051}
   leftRingModel: {fileID: 1869581728486969306}
-  secondLeftRingModel: {fileID: 0}
+  secondLeftRingModel: {fileID: 1785543304}
   total: 0
   correct: 0
   isPressed: 0
   rightRingPointCollider: {fileID: 642696570}
-  secondRightRingPointCollider: {fileID: 0}
+  secondRightRingPointCollider: {fileID: 1991054690}
   leftRingPointCollider: {fileID: 806272292}
-  secondLeftRingPointCollider: {fileID: 0}
+  secondLeftRingPointCollider: {fileID: 1160862656}
   timerObject: {fileID: 1490159197}
 --- !u!4 &2520443553974533866
 Transform:
