@@ -95,7 +95,7 @@ public class dsrRightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && isPressed) 
         {
-            HiHatClosed.pitch = Random.Range(0.8f,1.2f);
+            HiHatClosed.pitch = Random.Range(1.0f,1.2f);
             HiHatClosed.PlayOneShot(input9);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 

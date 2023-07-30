@@ -17,6 +17,8 @@ TagManager:
   - rightRing
   - rightRingPointCollider
   - leftRingPointCollider
+  - secondleftRingPointCollider
+  - secondrightRingPointCollider
   layers:
   - Default
   - TransparentFX
