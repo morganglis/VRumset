@@ -21,6 +21,14 @@ TagManager:
   - secondrightRingPointCollider
   - secondLeftRing
   - secondRightRing
+  - thirdRightRing
+  - fourthRightRing
+  - thirdLeftRing
+  - fourthLeftRing
+  - thirdrightRingPointCollider
+  - fourthrightRingPointCollider
+  - thirdleftRingPointCollider
+  - fourthleftRingPointCollider
   layers:
   - Default
   - TransparentFX

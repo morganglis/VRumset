@@ -115,12 +115,6 @@ public class dsrScript : MonoBehaviour {
         accuracy = (finalcorrect / finaltotal) * 100;   // Divide the correct number of hits by the total number of hits and multiply by 100 to get the accuracy
         accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");  // Format how the accuracy variable should display
 
-        Debug.Log("Right stick total:" + RscriptManager.total);
-        Debug.Log("Right stick correct:" + RscriptManager.correct);
-        Debug.Log("Left stick total:" + LscriptManager.total);
-        Debug.Log("Left stick correct:" + LscriptManager.correct);
-
-
     }
 
     public void startButtonFunc()   // Controls what happens when the start button is pressed
