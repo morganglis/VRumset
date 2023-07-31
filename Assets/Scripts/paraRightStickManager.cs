@@ -77,7 +77,7 @@ public class paraRightStickManager : MonoBehaviour
 
     void Start() 
     {
-        scriptManager = paraManager.GetComponent<paraScript>();   // Grab our ssrManager script
+        scriptManager = paraManager.GetComponent<paraScript>();   // Grab our paraManager script
         timerscriptManager = timerObject.GetComponent<paraTimerScript>();   // Grab our timer script
     }
 

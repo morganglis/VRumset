@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/dsrScene.unity
     guid: 99d1ffe50d2f7f641bb81cafbd69494f
+  - enabled: 1
+    path: Assets/Scenes/paraScene.unity
+    guid: 7d49a214c2be59c4397fe55479b057ee
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfa7cbb9626ac1e41a5192f3091d0bf5, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 3ff5c2234265384439b040bde67184ec, type: 2}
