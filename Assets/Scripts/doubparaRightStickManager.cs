@@ -176,8 +176,8 @@ public class doubparaRightStickManager : MonoBehaviour
         {
 
             twoRR.SetActive(false); // The right ring is set to inactive
-            threeRR.SetActive(true);  // The left ring is now set to active
-            StartCoroutine(threeRightHitCooldown());
+            twoLR.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(twoLeftHitCooldown());
             twoRRPC.SetActive(false);
             total += 1; // Total points increments by one
             correct += 1;   // Correct points increments by one
@@ -188,8 +188,8 @@ public class doubparaRightStickManager : MonoBehaviour
         {
 
             threeRR.SetActive(false); // The right ring is set to inactive
-            twoLR.SetActive(true);  // The left ring is now set to active
-            StartCoroutine(twoLeftHitCooldown());
+            fourRR.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(fourRightHitCooldown());
             threeRRPC.SetActive(false);
             total += 1; // Total points increments by one
             correct += 1;   // Correct points increments by one
@@ -202,6 +202,28 @@ public class doubparaRightStickManager : MonoBehaviour
             threeLR.SetActive(true);  // The left ring is now set to active
             StartCoroutine(threeLeftHitCooldown());
             fourRRPC.SetActive(false);
+            total += 1; // Total points increments by one
+            correct += 1;   // Correct points increments by one
+        }
+
+        if(col.gameObject.tag == "fifthrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
+        {
+
+            fiveRR.SetActive(false); // The right ring is set to inactive
+            fourLR.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(fourLeftHitCooldown());
+            fiveRRPC.SetActive(false);
+            total += 1; // Total points increments by one
+            correct += 1;   // Correct points increments by one
+        }
+
+        if(col.gameObject.tag == "sixthrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
+        {
+
+            sixRR.SetActive(false); // The right ring is set to inactive
+            fiveLR.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(fiveLeftHitCooldown());
+            sixRRPC.SetActive(false);
             total += 1; // Total points increments by one
             correct += 1;   // Correct points increments by one
         }
@@ -226,6 +248,16 @@ public class doubparaRightStickManager : MonoBehaviour
             StartCoroutine(fourLeftHitCooldown());   // The cooldown coroutine is called
         }
 
+        if (col.gameObject.tag == "fifthLeftRing") // If the collision (a wrong one) occurs with the left ring
+        {
+            StartCoroutine(fiveLeftHitCooldown());   // The cooldown coroutine is called
+        }
+
+        if (col.gameObject.tag == "sixthLeftRing") // If the collision (a wrong one) occurs with the left ring
+        {
+            StartCoroutine(sixLeftHitCooldown());   // The cooldown coroutine is called
+        }
+
         if(col.gameObject.tag == "leftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
         {
             oneLRPC.SetActive(false); // The left ring point collider state is set to inactive
@@ -247,6 +279,18 @@ public class doubparaRightStickManager : MonoBehaviour
         if(col.gameObject.tag == "fourthleftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
         {
             fourLRPC.SetActive(false); // The left ring point collider state is set to inactive
+            total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
+        }
+
+        if(col.gameObject.tag == "fifthleftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
+        {
+            fiveLRPC.SetActive(false); // The left ring point collider state is set to inactive
+            total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
+        }
+
+        if(col.gameObject.tag == "sixthleftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
+        {
+            sixLRPC.SetActive(false); // The left ring point collider state is set to inactive
             total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
         }
     }
@@ -275,10 +319,22 @@ public class doubparaRightStickManager : MonoBehaviour
         fourLRPC.SetActive(true);
     }
 
-    IEnumerator threeRightHitCooldown() // Second Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    IEnumerator fiveLeftHitCooldown() // Third Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
         yield return new WaitForSecondsRealtime(0.3f);
-        threeRRPC.SetActive(true);
+        fiveLRPC.SetActive(true);
+    }
+
+    IEnumerator sixLeftHitCooldown() // Third Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        sixLRPC.SetActive(true);
+    }
+
+    IEnumerator fourRightHitCooldown() // Second Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        fourRRPC.SetActive(true);
     }
 
 }

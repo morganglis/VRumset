@@ -29,6 +29,14 @@ TagManager:
   - fourthrightRingPointCollider
   - thirdleftRingPointCollider
   - fourthleftRingPointCollider
+  - fifthRightRing
+  - sixthRightRing
+  - fifthLeftRing
+  - sixthLeftRing
+  - fifthrightRingPointCollider
+  - sixthrightRingPointCollider
+  - fifthleftRingPointCollider
+  - sixthleftRingPointCollider
   layers:
   - Default
   - TransparentFX

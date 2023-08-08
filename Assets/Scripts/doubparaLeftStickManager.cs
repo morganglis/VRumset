@@ -6,7 +6,7 @@ using UltimateXR.Haptics;
 using UltimateXR.Core;
 using UltimateXR.Devices;
 
-public class doubparaLeftStickScript : MonoBehaviour
+public class doubparaLeftStickManager : MonoBehaviour
 {
     public AudioClip input;
     public AudioSource Snare;
@@ -50,14 +50,14 @@ public class doubparaLeftStickScript : MonoBehaviour
     public GameObject threeRR;
     public GameObject fourRR;
     public GameObject fiveRR;
-    public GameObject sixRR
+    public GameObject sixRR;
     // one-six LR = Left Ring Models
     public GameObject oneLR;
     public GameObject twoLR;
     public GameObject threeLR;
     public GameObject fourLR;
-    public GameObject fiveRR;
-    public GameObject sixRR;
+    public GameObject fiveLR;
+    public GameObject sixLR;
     // one-six RRPC = Right Ring Point Collider
     public GameObject oneRRPC;
     public GameObject twoRRPC;
@@ -175,8 +175,8 @@ public class doubparaLeftStickScript : MonoBehaviour
         if(col.gameObject.tag == "secondleftRingPointCollider") 
         {
             twoLR.SetActive(false);
-            fourRR.SetActive(true);
-            StartCoroutine(fourRightHitCooldown());
+            threeRR.SetActive(true);
+            StartCoroutine(threeRightHitCooldown());
             twoLRPC.SetActive(false);
             total += 1;
             correct += 1;
@@ -185,8 +185,8 @@ public class doubparaLeftStickScript : MonoBehaviour
         if(col.gameObject.tag == "thirdleftRingPointCollider") 
         {
             threeLR.SetActive(false);
-            fourLR.SetActive(true);
-            StartCoroutine(fourLeftHitCooldown());
+            fiveRR.SetActive(true);
+            StartCoroutine(fiveRightHitCooldown());
             threeLRPC.SetActive(false);
             total += 1;
             correct += 1;
@@ -195,9 +195,29 @@ public class doubparaLeftStickScript : MonoBehaviour
         if(col.gameObject.tag == "fourthleftRingPointCollider") 
         {
             fourLR.SetActive(false);
+            sixRR.SetActive(true);
+            StartCoroutine(sixRightHitCooldown());
+            fourLRPC.SetActive(false);
+            total += 1;
+            correct += 1;
+        }
+
+        if(col.gameObject.tag == "fifthleftRingPointCollider") 
+        {
+            fiveLR.SetActive(false);
+            sixLR.SetActive(true);
+            StartCoroutine(sixLeftHitCooldown());
+            fiveLRPC.SetActive(false);
+            total += 1;
+            correct += 1;
+        }
+
+        if(col.gameObject.tag == "sixthleftRingPointCollider") 
+        {
+            sixLR.SetActive(false);
             oneRR.SetActive(true);
             StartCoroutine(oneRightHitCooldown());
-            fourLRPC.SetActive(false);
+            sixLRPC.SetActive(false);
             total += 1;
             correct += 1;
         }
@@ -220,6 +240,16 @@ public class doubparaLeftStickScript : MonoBehaviour
         if (col.gameObject.tag == "fourthRightRing") 
         {
             StartCoroutine(fourRightHitCooldown());
+        }
+
+        if (col.gameObject.tag == "fifthRightRing") 
+        {
+            StartCoroutine(fiveRightHitCooldown());
+        }
+
+        if (col.gameObject.tag == "sixthRightRing") 
+        {
+            StartCoroutine(sixRightHitCooldown());
         }
 
 
@@ -246,12 +276,24 @@ public class doubparaLeftStickScript : MonoBehaviour
             fourRRPC.SetActive(false);
             total += 1;
         }
+
+        if(col.gameObject.tag == "fifthrightRingPointCollider") 
+        {
+            fiveRRPC.SetActive(false);
+            total += 1;
+        }
+
+        if(col.gameObject.tag == "sixthrightRingPointCollider") 
+        {
+            sixRRPC.SetActive(false);
+            total += 1;
+        }
     }
 
-    IEnumerator fourLeftHitCooldown()
+    IEnumerator sixLeftHitCooldown()
     {
         yield return new WaitForSecondsRealtime(0.3f);
-        fourLRPC.SetActive(true);
+        sixLRPC.SetActive(true);
     }
 
     IEnumerator oneRightHitCooldown() 
@@ -276,6 +318,18 @@ public class doubparaLeftStickScript : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.3f);
         fourRRPC.SetActive(true);
+    }
+
+    IEnumerator fiveRightHitCooldown() 
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        fiveRRPC.SetActive(true);
+    }
+
+    IEnumerator sixRightHitCooldown() 
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        sixRRPC.SetActive(true);
     }
 }
 
