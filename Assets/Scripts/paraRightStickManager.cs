@@ -112,7 +112,6 @@ public class paraRightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && isPressed) 
         {
-            HiHatClosed.pitch = Random.Range(1.0f,1.2f);
             HiHatClosed.PlayOneShot(input9);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
@@ -168,8 +167,8 @@ public class paraRightStickManager : MonoBehaviour
         if(col.gameObject.tag == "secondrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
         {
 
-            twoRR.SetActive(false); // The right ring is set to inactive
-            threeRR.SetActive(true);  // The left ring is now set to active
+            twoRR.SetActive(false); // The 2nd right ring is set to inactive
+            threeRR.SetActive(true);  // The 3rd left ring is now set to active
             StartCoroutine(threeRightHitCooldown());
             twoRRPC.SetActive(false);
             total += 1; // Total points increments by one
@@ -180,8 +179,8 @@ public class paraRightStickManager : MonoBehaviour
         if(col.gameObject.tag == "thirdrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
         {
 
-            threeRR.SetActive(false); // The right ring is set to inactive
-            twoLR.SetActive(true);  // The left ring is now set to active
+            threeRR.SetActive(false); // The 3rd right ring is set to inactive
+            twoLR.SetActive(true);  // The 2nd left ring is now set to active
             StartCoroutine(twoLeftHitCooldown());
             threeRRPC.SetActive(false);
             total += 1; // Total points increments by one
@@ -191,8 +190,8 @@ public class paraRightStickManager : MonoBehaviour
         if(col.gameObject.tag == "fourthrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
         {
 
-            fourRR.SetActive(false); // The right ring is set to inactive
-            threeLR.SetActive(true);  // The left ring is now set to active
+            fourRR.SetActive(false); // The 4th right ring is set to inactive
+            threeLR.SetActive(true);  // The 3rd left ring is now set to active
             StartCoroutine(threeLeftHitCooldown());
             fourRRPC.SetActive(false);
             total += 1; // Total points increments by one
@@ -250,25 +249,25 @@ public class paraRightStickManager : MonoBehaviour
         oneLRPC.SetActive(true);
     }
 
-    IEnumerator twoLeftHitCooldown() // Third Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    IEnumerator twoLeftHitCooldown() //  Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
         yield return new WaitForSecondsRealtime(0.3f);
         twoLRPC.SetActive(true);
     }
 
-    IEnumerator threeLeftHitCooldown() // Third Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    IEnumerator threeLeftHitCooldown() // Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
         yield return new WaitForSecondsRealtime(0.3f);
         threeLRPC.SetActive(true);
     }
 
-    IEnumerator fourLeftHitCooldown() // Third Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    IEnumerator fourLeftHitCooldown() //  Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
         yield return new WaitForSecondsRealtime(0.3f);
         fourLRPC.SetActive(true);
     }
 
-    IEnumerator threeRightHitCooldown() // Second Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    IEnumerator threeRightHitCooldown() //  Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
         yield return new WaitForSecondsRealtime(0.3f);
         threeRRPC.SetActive(true);

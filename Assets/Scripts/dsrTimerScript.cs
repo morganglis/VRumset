@@ -70,8 +70,6 @@ public class dsrTimerScript : MonoBehaviour
                 rightRingPointCollider.SetActive(false);
                 secondRightRingPointCollider.SetActive(false);
                 secondLeftRingPointCollider.SetActive(false);
-
-
             }
         }
     }

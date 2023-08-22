@@ -42,7 +42,6 @@ public class doubparaTimerScript : MonoBehaviour
     public GameObject fiveLRPC;
     public GameObject sixLRPC;
 
-
     public GameObject doubparaInProgressUI;
 
     public TextMeshProUGUI timeText;

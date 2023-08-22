@@ -64,7 +64,7 @@ public class dsrRightStickManager : MonoBehaviour
 
     void Start() 
     {
-        scriptManager = dsrManager.GetComponent<dsrScript>();   // Grab our ssrManager script
+        scriptManager = dsrManager.GetComponent<dsrScript>();   // Grab our dsrManager script
         timerscriptManager = timerObject.GetComponent<dsrTimerScript>();   // Grab our timer script
     }
 
@@ -99,7 +99,6 @@ public class dsrRightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && isPressed) 
         {
-            HiHatClosed.pitch = Random.Range(1.0f,1.2f);
             HiHatClosed.PlayOneShot(input9);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 

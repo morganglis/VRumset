@@ -214,8 +214,6 @@ public class dsrScript : MonoBehaviour {
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
 
-
-
     }
 
     IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick

@@ -179,8 +179,6 @@ public class flamScript : MonoBehaviour
         lobbyConfirmButtonUI.SetActive(true);
         lobbyConfirmUI.SetActive(true);
         backButtonUI.SetActive(true);
-        
-
     }
 
     public void backButtonFunc()
@@ -213,9 +211,6 @@ public class flamScript : MonoBehaviour
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
-
-
-
     }
 
     IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick

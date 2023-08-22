@@ -73,8 +73,6 @@ public class flamLeftStickManager : MonoBehaviour
     {
         if (col.gameObject.tag == "Snare" && Time.time > soundStart + soundCooldown) 
         {
-
-            Snare.pitch = Random.Range(0.8f,1.2f);
             Snare.PlayOneShot(input);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -82,7 +80,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && !(isPressed)) 
         {
-            HiHat.pitch = Random.Range(0.8f,1.2f);
             HiHat.PlayOneShot(input2);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -90,7 +87,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && isPressed) 
         {
-            HiHatClosed.pitch = Random.Range(0.8f,1.2f);
             HiHatClosed.PlayOneShot(input9);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -98,7 +94,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Crash1" && Time.time > soundStart + soundCooldown) 
         {
-            Crash1.pitch = Random.Range(0.8f,1.2f);
             Crash1.PlayOneShot(input3);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -107,7 +102,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Crash2" && Time.time > soundStart + soundCooldown) 
         {
-            Crash2.pitch = Random.Range(0.8f,1.2f);
             Crash2.PlayOneShot(input4);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -116,7 +110,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Floor" && Time.time > soundStart + soundCooldown) 
         {
-            Floor.pitch = Random.Range(0.8f,1.2f);
             Floor.PlayOneShot(input7);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -124,7 +117,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Tom1" && Time.time > soundStart + soundCooldown) 
         {
-            Tom1.pitch = Random.Range(0.8f,1.2f);
             Tom1.PlayOneShot(input5);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
@@ -132,7 +124,6 @@ public class flamLeftStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Tom2" && Time.time > soundStart + soundCooldown) 
         {
-            Tom2.pitch = Random.Range(0.8f,1.2f);
             Tom2.PlayOneShot(input6);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 

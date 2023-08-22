@@ -22,7 +22,6 @@ public class menuScript : MonoBehaviour
     public GameObject rudimentBanner;
     public GameObject confirmBanner;
 
-
     public GameObject ssrConfirmButton;
     public GameObject dsrConfirmButton;
     public GameObject fConfirmButton;
@@ -34,7 +33,6 @@ public class menuScript : MonoBehaviour
 
     public GameObject tutorialVid;
     public GameObject videoPlayer;
-    
 
     private bool pressed = false;
 
@@ -44,6 +42,7 @@ public class menuScript : MonoBehaviour
         {
             return;
         }
+        
         pressed = true;
         StartCoroutine(PressCooldown());
 

@@ -80,8 +80,6 @@ public class doubparaRightStickManager : MonoBehaviour
     public GameObject fiveLRPC;
     public GameObject sixLRPC;
 
-
-
     void Start() 
     {
         scriptManager = doubparaManager.GetComponent<doubparaScript>();   // Grab our doubparaManager script
@@ -119,7 +117,6 @@ public class doubparaRightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "HiHat" && Time.time > soundStart + soundCooldown && isPressed) 
         {
-            HiHatClosed.pitch = Random.Range(1.0f,1.2f);
             HiHatClosed.PlayOneShot(input9);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 

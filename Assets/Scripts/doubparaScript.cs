@@ -151,6 +151,7 @@ public class doubparaScript : MonoBehaviour
 
         menuTitleUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
+        startButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         doubparaTutorialTitleUI.SetActive(true);
         backButtonUI.SetActive(true);
@@ -213,8 +214,6 @@ public class doubparaScript : MonoBehaviour
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
-
-
 
     }
 

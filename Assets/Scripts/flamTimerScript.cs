@@ -42,7 +42,8 @@ public class flamTimerScript : MonoBehaviour {
             }
         }
 
-        if(flamInProgressUI.activeSelf == true) {    // If the text "In Progress..." is currently active
+        if (flamInProgressUI.activeSelf == true) // If the text "In Progress..." is currently active
+        {    
             
             if (timeRemaining > 0)  // If the time remaining is above 0, the timeRemaining variable will begin to count down and displayed
             {
