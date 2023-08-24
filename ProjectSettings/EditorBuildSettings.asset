@@ -6,22 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/freePlay.unity
-    guid: 8c5765065884f84499242d64b52a9728
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 589bf37738c85224c8419d2904b93812
   - enabled: 1
     path: Assets/Scenes/ssrScene.unity
     guid: 1c59a4572ee518640b77587e76259ae4
   - enabled: 1
-    path: Assets/Scenes/dsrScene.unity
-    guid: 99d1ffe50d2f7f641bb81cafbd69494f
-  - enabled: 1
     path: Assets/Scenes/paraScene.unity
     guid: 7d49a214c2be59c4397fe55479b057ee
+  - enabled: 1
+    path: Assets/Scenes/freePlay.unity
+    guid: 8c5765065884f84499242d64b52a9728
+  - enabled: 1
+    path: Assets/Scenes/flamScene.unity
+    guid: 81c4f67e534d1a64b9dd61b3b75f3008
+  - enabled: 1
+    path: Assets/Scenes/doubparaScene.unity
+    guid: b161b2633382a124ab246845f8c1abfe
+  - enabled: 1
+    path: Assets/Scenes/dsrScene.unity
+    guid: 99d1ffe50d2f7f641bb81cafbd69494f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfa7cbb9626ac1e41a5192f3091d0bf5, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 3ff5c2234265384439b040bde67184ec, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 4cf35f34399022f4cad9697130d2c1f7, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 769f652aacd5e2147b3130ecf1de0be2, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 1afcbff3b86b0644fa531f1331bfd084, type: 2}

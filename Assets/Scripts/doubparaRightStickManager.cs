@@ -124,7 +124,7 @@ public class doubparaRightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Crash1" && Time.time > soundStart + soundCooldown) 
         {
-            Crash1.PlayOneShot(input2);
+            Crash1.PlayOneShot(input3);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
             crashAnimation.Play();

@@ -29,4 +29,14 @@ public class UIButtonScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other == presser && enabled)
+        {
+            onRelease.Invoke();
+            isPressed = false;
+        }
+
+    }
+
 }

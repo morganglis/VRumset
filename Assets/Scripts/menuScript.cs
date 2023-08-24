@@ -18,7 +18,6 @@ public class menuScript : MonoBehaviour
     public GameObject dpButton;
 
     public GameObject welcomeBanner;
-    public GameObject tutorialBanner;
     public GameObject rudimentBanner;
     public GameObject confirmBanner;
 
@@ -47,7 +46,6 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(true);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
         freePlayButton.SetActive(false);
@@ -67,7 +65,6 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         rudimentBanner.SetActive(true);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
@@ -91,7 +88,6 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(true);
         freePlayConfirmButton.SetActive(true);
         backButton.SetActive(true);
@@ -129,8 +125,8 @@ public class menuScript : MonoBehaviour
         confirmBanner.SetActive(false);
 
         videoPlayer.SetActive(false);
+        tutorialVid.SetActive(false);
         rudimentBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(false);
 
     }
@@ -145,7 +141,6 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(true);
         ssrConfirmButton.SetActive(true);
         backButton.SetActive(true);
@@ -171,13 +166,19 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(true);
         dsrConfirmButton.SetActive(true);
         backButton.SetActive(true);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
         freePlayButton.SetActive(false);
+        rudimentBanner.SetActive(false);
+        freePlayButton.SetActive(false);
+        ssrButton.SetActive(false);
+        dsrButton.SetActive(false);
+        fButton.SetActive(false);
+        pButton.SetActive(false);
+        dpButton.SetActive(false);
     }
 
     public void fConfirm()
@@ -190,13 +191,19 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(true);
         fConfirmButton.SetActive(true);
         backButton.SetActive(true);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
         freePlayButton.SetActive(false);
+        rudimentBanner.SetActive(false);
+        freePlayButton.SetActive(false);
+        ssrButton.SetActive(false);
+        dsrButton.SetActive(false);
+        fButton.SetActive(false);
+        pButton.SetActive(false);
+        dpButton.SetActive(false);
 
     }
 
@@ -210,13 +217,19 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(true);
         pConfirmButton.SetActive(true);
         backButton.SetActive(true);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
         freePlayButton.SetActive(false);
+        rudimentBanner.SetActive(false);
+        freePlayButton.SetActive(false);
+        ssrButton.SetActive(false);
+        dsrButton.SetActive(false);
+        fButton.SetActive(false);
+        pButton.SetActive(false);
+        dpButton.SetActive(false);
 
     }
 
@@ -230,19 +243,25 @@ public class menuScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         welcomeBanner.SetActive(false);
-        tutorialBanner.SetActive(false);
         confirmBanner.SetActive(true);
         dpConfirmButton.SetActive(true);
         backButton.SetActive(true);
         rudimentButton.SetActive(false);
         tutorialButton.SetActive(false);
         freePlayButton.SetActive(false);
+        rudimentBanner.SetActive(false);
+        freePlayButton.SetActive(false);
+        ssrButton.SetActive(false);
+        dsrButton.SetActive(false);
+        fButton.SetActive(false);
+        pButton.SetActive(false);
+        dpButton.SetActive(false);
 
     }
 
     IEnumerator PressCooldown()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         pressed = false;
     }
 }

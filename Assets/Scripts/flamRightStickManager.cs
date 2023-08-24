@@ -42,6 +42,8 @@ public class flamRightStickManager : MonoBehaviour
     public Animation rideAnimation;
 
     public GameObject rightRingModel;
+    public GameObject secondrightRingModel;
+    public GameObject secondleftRingModel;
     public GameObject leftRingModel;
 
     public float timeRemaining;
@@ -55,7 +57,9 @@ public class flamRightStickManager : MonoBehaviour
     private flamTimerScript timerscriptManager;
 
     public GameObject leftRingPointCollider;
+    public GameObject secondleftRingPointCollider;
     public GameObject rightRingPointCollider;
+    public GameObject secondrightRingPointCollider;
 
 
     void Start() 
@@ -102,7 +106,7 @@ public class flamRightStickManager : MonoBehaviour
 
         if (col.gameObject.tag == "Crash1" && Time.time > soundStart + soundCooldown) 
         {
-            Crash1.PlayOneShot(input2);
+            Crash1.PlayOneShot(input3);
             soundStart = Time.time;
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
             crashAnimation.Play();
@@ -137,23 +141,36 @@ public class flamRightStickManager : MonoBehaviour
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Right, UxrHapticClipType.Click, 1.0f); 
         }
 
-       if (col.gameObject.tag == "rightRing")   // If the collision (a correct one) occurs with the right ring
+        if(col.gameObject.tag == "rightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
         {
-            rightRingModel.SetActive(false); // The right ring is set to inactive
-            leftRingModel.SetActive(true);  // The left ring is now set to active
-            StartCoroutine(rightHitCooldown()); // A cooldown coroutine begins to ensure that points cannot get doubled by the next collider appearing to quickly while the drum stick is still in the down position
+            rightRingPointCollider.SetActive(false);    // The right ring point collider state is now inactive
+            rightRingModel.SetActive(false);
+            secondrightRingModel.SetActive(true);  // The left ring is now set to active
+            StartCoroutine(twoRightHitCooldown());
+            total += 1; // Total points increments by one
+            correct += 1;   // Correct points increments by one
+        }
+
+        if(col.gameObject.tag == "secondrightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
+        {
+
+            secondrightRingModel.SetActive(false); // The 2nd right ring is set to inactive
+            secondleftRingModel.SetActive(true);  // The 3rd left ring is now set to active
+            StartCoroutine(twoLeftHitCooldown());
+            secondrightRingPointCollider.SetActive(false);
+            total += 1; // Total points increments by one
+            correct += 1;   // Correct points increments by one
+
         }
 
         if (col.gameObject.tag == "leftRing") // If the collision (a wrong one) occurs with the left ring
         {
-            StartCoroutine(rightHitCooldown());   // The cooldown coroutine is called
+            StartCoroutine(oneLeftHitCooldown());   // The cooldown coroutine is called
         }
 
-        if(col.gameObject.tag == "rightRingPointCollider") // If the right stick (correctly) collides with the right ring point collider then:
+        if (col.gameObject.tag == "secondLeftRing") // If the collision (a wrong one) occurs with the left ring
         {
-            rightRingPointCollider.SetActive(false);    // The right ring point collider state is now inactive
-            total += 1; // Total points increments by one
-            correct += 1;   // Correct points increments by one
+            StartCoroutine(twoLeftHitCooldown());   // The cooldown coroutine is called
         }
 
         if(col.gameObject.tag == "leftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
@@ -161,11 +178,30 @@ public class flamRightStickManager : MonoBehaviour
             leftRingPointCollider.SetActive(false); // The left ring point collider state is set to inactive
             total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
         }
+
+        if(col.gameObject.tag == "secondleftRingPointCollider") // If the right stick (incorrectly) collides with the left ring point collider then:
+        {
+            secondleftRingPointCollider.SetActive(false); // The left ring point collider state is set to inactive
+            total += 1; // The total points increment by one, correct does not increase because this was not a correct hit by the user
+        }
+
     }
 
-    IEnumerator rightHitCooldown() // Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    IEnumerator oneLeftHitCooldown() // Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
     {
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(0.2f);
         leftRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator twoLeftHitCooldown() //  Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        secondleftRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator twoRightHitCooldown() //  Cooldown method that gives a bit of delay to prevent double counted hits to the total/correct variables
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        secondrightRingPointCollider.SetActive(true);
     }
 }

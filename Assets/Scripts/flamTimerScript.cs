@@ -14,6 +14,8 @@ public class flamTimerScript : MonoBehaviour {
 
     public GameObject leftRingPointCollider;
     public GameObject rightRingModel;
+    public GameObject secondrightRingModel;
+    public GameObject secondleftRingModel;
     public GameObject leftRingModel;
     public GameObject flamInProgressUI;
 
@@ -57,7 +59,10 @@ public class flamTimerScript : MonoBehaviour {
                 timerIsRunning = false;
                 Success.PlayOneShot(input);
                 leftRingModel.SetActive(false);
+                secondleftRingModel.SetActive(false);
                 rightRingModel.SetActive(false);
+                secondrightRingModel.SetActive(false);
+
 
             }
         }

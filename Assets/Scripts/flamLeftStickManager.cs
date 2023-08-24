@@ -40,6 +40,7 @@ public class flamLeftStickManager : MonoBehaviour
 
     public GameObject rightRingModel;
     public GameObject leftRingModel;
+    public GameObject secondleftRingModel;
 
     public float total = 0;
     public float correct = 0;
@@ -47,8 +48,10 @@ public class flamLeftStickManager : MonoBehaviour
     public bool isPressed;
 
     public GameObject rightRingPointCollider;
+    public GameObject secondrightRingPointCollider;
 
     public GameObject leftRingPointCollider;
+    public GameObject secondleftRingPointCollider;
 
     public GameObject timerObject;
     private flamTimerScript timerscriptManager;
@@ -129,35 +132,66 @@ public class flamLeftStickManager : MonoBehaviour
             UxrAvatar.LocalAvatar.ControllerInput.SendHapticFeedback(UxrHandSide.Left, UxrHapticClipType.Click, 1.0f); 
         }
         
-        if (col.gameObject.tag == "leftRing") 
+        if(col.gameObject.tag == "leftRingPointCollider") 
         {
             leftRingModel.SetActive(false);
             rightRingModel.SetActive(true);
-            StartCoroutine(lefthitCoolDown());
-        }
-
-        if (col.gameObject.tag == "rightRing") 
-        {
-            StartCoroutine(lefthitCoolDown());
-        }
-
-        if(col.gameObject.tag == "leftRingPointCollider") 
-        {
+            StartCoroutine(oneRightHitCooldown());
             leftRingPointCollider.SetActive(false);
             total += 1;
             correct += 1;
         }
+
+        if(col.gameObject.tag == "secondleftRingPointCollider") 
+        {
+            secondleftRingModel.SetActive(false);
+            leftRingModel.SetActive(true);
+            StartCoroutine(fourLeftHitCooldown());
+            secondleftRingPointCollider.SetActive(false);
+            total += 1;
+            correct += 1;
+        }
+
+
+        if (col.gameObject.tag == "rightRing") 
+        {
+            StartCoroutine(oneRightHitCooldown());
+        }
+
+        if (col.gameObject.tag == "secondRightRing") 
+        {
+            StartCoroutine(twoRightHitCooldown());
+        }
+
 
         if(col.gameObject.tag == "rightRingPointCollider") 
         {
             rightRingPointCollider.SetActive(false);
             total += 1;
         }
+
+        if(col.gameObject.tag == "secondrightRingPointCollider") 
+        {
+            secondrightRingPointCollider.SetActive(false);
+            total += 1;
+        }
     }
 
-    IEnumerator lefthitCoolDown() 
+    IEnumerator fourLeftHitCooldown()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(0.2f);
+        leftRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator oneRightHitCooldown() 
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
         rightRingPointCollider.SetActive(true);
+    }
+
+    IEnumerator twoRightHitCooldown() 
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        secondrightRingPointCollider.SetActive(true);
     }
 }
