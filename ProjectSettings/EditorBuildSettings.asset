@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/flamScene.unity
     guid: 81c4f67e534d1a64b9dd61b3b75f3008
   - enabled: 1
-    path: Assets/Scenes/doubparaScene.unity
-    guid: b161b2633382a124ab246845f8c1abfe
-  - enabled: 1
     path: Assets/Scenes/dsrScene.unity
     guid: 99d1ffe50d2f7f641bb81cafbd69494f
+  - enabled: 1
+    path: Assets/Scenes/doubparaScene.unity
+    guid: b161b2633382a124ab246845f8c1abfe
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cfa7cbb9626ac1e41a5192f3091d0bf5, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 3ff5c2234265384439b040bde67184ec, type: 2}

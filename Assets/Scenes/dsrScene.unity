@@ -728,7 +728,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 830928539}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3418,6 +3418,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 78cacd7609e03f447aaa12fcf378e5ec, type: 2}
+    - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 830928539}
+    - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
@@ -6787,7 +6799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!215 &1511959276
 ReflectionProbe:
   m_ObjectHideFlags: 0

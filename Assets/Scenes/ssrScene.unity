@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 38824673}
   - component: {fileID: 38824672}
   - component: {fileID: 38824671}
+  - component: {fileID: 38824675}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -724,7 +725,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 830928539}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -770,6 +771,24 @@ RectTransform:
   m_AnchoredPosition: {x: 543.5, y: 292}
   m_SizeDelta: {x: 1087, y: 584}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &38824675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38824670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07521b0732d327543ad102e617a223c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionType: 0
+  _fingerTipMinHoverDistance: 0.05
+  _autoEnableLaserPointer: 0
+  _autoEnableDistance: 5
+  _allowLeftHand: 1
+  _allowRightHand: 1
 --- !u!1001 &58439005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3107,6 +3126,11 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4711208715938537054, guid: 3707d70514ec86542b55bfdfbf92b716, type: 3}
+--- !u!20 &731235543 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1729233456827980980, guid: 054437984549bac458615ce8da583cd2, type: 3}
+  m_PrefabInstance: {fileID: 830928538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &773180057
 GameObject:
   m_ObjectHideFlags: 0
@@ -3269,8 +3293,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 78cacd7609e03f447aaa12fcf378e5ec, type: 2}
     - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 731235543}
+    - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253650854741552643, guid: 054437984549bac458615ce8da583cd2, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1729233457389785263, guid: 054437984549bac458615ce8da583cd2, type: 3}
       propertyPath: m_Name
@@ -3978,11 +4014,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ab8bedb38fe884e498fe84621d4f25ec, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 054437984549bac458615ce8da583cd2, type: 3}
---- !u!20 &830928539 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1729233456827980980, guid: 054437984549bac458615ce8da583cd2, type: 3}
-  m_PrefabInstance: {fileID: 830928538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &830928540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6910140381090338523, guid: 054437984549bac458615ce8da583cd2, type: 3}
@@ -6379,7 +6410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!215 &1511959276
 ReflectionProbe:
   m_ObjectHideFlags: 0
