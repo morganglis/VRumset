@@ -16,7 +16,6 @@ public class flamScript : MonoBehaviour
     public GameObject startButtonUI;
     public GameObject tutorialButtonUI;
     public GameObject lobbyButtonUI;
-    public GameObject flamTutorialTitleUI;
     public GameObject backButtonUI;
     public GameObject flamInProgressUI;
     public GameObject timeLeftTextUI;
@@ -52,6 +51,9 @@ public class flamScript : MonoBehaviour
     public float finaltotal;
     public float finalcorrect;
     public float accuracy;
+
+    public GameObject tutorialVid;
+    public GameObject videoPlayer;
 
     public TextMeshProUGUI accuracyText;
 
@@ -138,7 +140,6 @@ public class flamScript : MonoBehaviour
         startButtonUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        flamTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         flamInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
@@ -158,10 +159,11 @@ public class flamScript : MonoBehaviour
         menuTitleUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        flamTutorialTitleUI.SetActive(true);
         backButtonUI.SetActive(true);
         flamInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
+        tutorialVid.SetActive(true);
+        videoPlayer.SetActive(true);
     }
 
     public void lobbyButtonFunc()
@@ -178,7 +180,6 @@ public class flamScript : MonoBehaviour
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         startButtonUI.SetActive(false);
-        flamTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(true);
         flamInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -208,7 +209,6 @@ public class flamScript : MonoBehaviour
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
         lobbyButtonUI.SetActive(true);
-        flamTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         flamInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -217,6 +217,8 @@ public class flamScript : MonoBehaviour
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
+        tutorialVid.SetActive(false);
+        videoPlayer.SetActive(false);
     }
 
     IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick

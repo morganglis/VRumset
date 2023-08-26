@@ -15,7 +15,6 @@ public class dsrScript : MonoBehaviour {
     public GameObject startButtonUI;
     public GameObject tutorialButtonUI;
     public GameObject lobbyButtonUI;
-    public GameObject dSRTutorialTitleUI;
     public GameObject backButtonUI;
     public GameObject dsRInProgressUI;
     public GameObject timeLeftTextUI;
@@ -51,6 +50,9 @@ public class dsrScript : MonoBehaviour {
     public float finaltotal;
     public float finalcorrect;
     public float accuracy;
+
+    public GameObject tutorialVid;
+    public GameObject videoPlayer;
 
     public TextMeshProUGUI accuracyText;
 
@@ -132,7 +134,6 @@ public class dsrScript : MonoBehaviour {
         startButtonUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        dSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         dsRInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
@@ -152,10 +153,11 @@ public class dsrScript : MonoBehaviour {
         menuTitleUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        dSRTutorialTitleUI.SetActive(true);
         backButtonUI.SetActive(true);
         dsRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
+        tutorialVid.SetActive(true);
+        videoPlayer.SetActive(true);
     }
 
     public void lobbyButtonFunc()
@@ -172,14 +174,12 @@ public class dsrScript : MonoBehaviour {
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         startButtonUI.SetActive(false);
-        dSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(true);
         dsRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(true);
         lobbyConfirmUI.SetActive(true);
         backButtonUI.SetActive(true);
-        
 
     }
 
@@ -204,7 +204,6 @@ public class dsrScript : MonoBehaviour {
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
         lobbyButtonUI.SetActive(true);
-        dSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         dsRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -213,7 +212,8 @@ public class dsrScript : MonoBehaviour {
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
-
+        tutorialVid.SetActive(false);
+        videoPlayer.SetActive(false);
     }
 
     IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick

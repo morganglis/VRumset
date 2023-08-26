@@ -16,7 +16,6 @@ public class paraScript : MonoBehaviour
     public GameObject startButtonUI;
     public GameObject tutorialButtonUI;
     public GameObject lobbyButtonUI;
-    public GameObject paraTutorialTitleUI;
     public GameObject backButtonUI;
     public GameObject paraInProgressUI;
     public GameObject timeLeftTextUI;
@@ -43,6 +42,9 @@ public class paraScript : MonoBehaviour
     public AudioSource hihatCloseInput;
 
     public Animation kickAnimation;
+
+    public GameObject videoPlayer;
+    public GameObject tutorialVid;
 
     public bool isPressed;
     private bool pressed = false;
@@ -132,7 +134,6 @@ public class paraScript : MonoBehaviour
         startButtonUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        paraTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         paraInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
@@ -152,10 +153,11 @@ public class paraScript : MonoBehaviour
         menuTitleUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        paraTutorialTitleUI.SetActive(true);
         backButtonUI.SetActive(true);
         paraInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
+        videoPlayer.SetActive(true);
+        tutorialVid.SetActive(true);
     }
 
     public void lobbyButtonFunc()
@@ -172,7 +174,6 @@ public class paraScript : MonoBehaviour
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         startButtonUI.SetActive(false);
-        paraTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(true);
         paraInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -180,7 +181,6 @@ public class paraScript : MonoBehaviour
         lobbyConfirmUI.SetActive(true);
         backButtonUI.SetActive(true);
         
-
     }
 
     public void backButtonFunc()
@@ -204,7 +204,6 @@ public class paraScript : MonoBehaviour
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
         lobbyButtonUI.SetActive(true);
-        paraTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         paraInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -213,8 +212,8 @@ public class paraScript : MonoBehaviour
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
-
-
+        tutorialVid.SetActive(false);
+        videoPlayer.SetActive(false);
 
     }
 

@@ -15,7 +15,6 @@ public class ssrScript : MonoBehaviour {
     public GameObject startButtonUI;
     public GameObject tutorialButtonUI;
     public GameObject lobbyButtonUI;
-    public GameObject sSRTutorialTitleUI;
     public GameObject backButtonUI;
     public GameObject ssRInProgressUI;
     public GameObject timeLeftTextUI;
@@ -53,6 +52,9 @@ public class ssrScript : MonoBehaviour {
     public float accuracy;
 
     public TextMeshProUGUI accuracyText;
+
+    public GameObject videoPlayer;
+    public GameObject tutorialVid;
 
     void Start() 
     {
@@ -114,6 +116,7 @@ public class ssrScript : MonoBehaviour {
         finalcorrect = RscriptManager.correct + LscriptManager.correct;     // Calculates our final correct total from right and left sticks
         accuracy = (finalcorrect / finaltotal) * 100;   // Divide the correct number of hits by the total number of hits and multiply by 100 to get the accuracy
         accuracyText.text = string.Format("{0:00}{1}", accuracy, "%");  // Format how the accuracy variable should display
+    
     }
 
     public void startButtonFunc()   // Controls what happens when the start button is pressed
@@ -131,7 +134,6 @@ public class ssrScript : MonoBehaviour {
         startButtonUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        sSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         ssRInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
@@ -151,10 +153,11 @@ public class ssrScript : MonoBehaviour {
         menuTitleUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        sSRTutorialTitleUI.SetActive(true);
         backButtonUI.SetActive(true);
         ssRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
+        videoPlayer.SetActive(true);
+        tutorialVid.SetActive(true);
     }
 
     public void lobbyButtonFunc()
@@ -171,7 +174,6 @@ public class ssrScript : MonoBehaviour {
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         startButtonUI.SetActive(false);
-        sSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(true);
         ssRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -179,7 +181,6 @@ public class ssrScript : MonoBehaviour {
         lobbyConfirmUI.SetActive(true);
         backButtonUI.SetActive(true);
         
-
     }
 
     public void backButtonFunc()
@@ -203,7 +204,6 @@ public class ssrScript : MonoBehaviour {
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
         lobbyButtonUI.SetActive(true);
-        sSRTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         ssRInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -212,8 +212,8 @@ public class ssrScript : MonoBehaviour {
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
-
-
+        tutorialVid.SetActive(false);
+        videoPlayer.SetActive(false);
 
     }
 

@@ -16,7 +16,6 @@ public class doubparaScript : MonoBehaviour
     public GameObject startButtonUI;
     public GameObject tutorialButtonUI;
     public GameObject lobbyButtonUI;
-    public GameObject doubparaTutorialTitleUI;
     public GameObject backButtonUI;
     public GameObject doubparaInProgressUI;
     public GameObject timeLeftTextUI;
@@ -54,6 +53,9 @@ public class doubparaScript : MonoBehaviour
     public float accuracy;
 
     public TextMeshProUGUI accuracyText;
+
+    public GameObject tutorialVid;
+    public GameObject videoPlayer;
 
     void Start() 
     {
@@ -132,7 +134,6 @@ public class doubparaScript : MonoBehaviour
         startButtonUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        doubparaTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         doubparaInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
@@ -153,10 +154,11 @@ public class doubparaScript : MonoBehaviour
         tutorialButtonUI.SetActive(false);
         startButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
-        doubparaTutorialTitleUI.SetActive(true);
+        tutorialVid.SetActive(true);
         backButtonUI.SetActive(true);
         doubparaInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
+        videoPlayer.SetActive(true);
     }
 
     public void lobbyButtonFunc()
@@ -173,7 +175,6 @@ public class doubparaScript : MonoBehaviour
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         startButtonUI.SetActive(false);
-        doubparaTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(true);
         doubparaInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -205,7 +206,6 @@ public class doubparaScript : MonoBehaviour
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
         lobbyButtonUI.SetActive(true);
-        doubparaTutorialTitleUI.SetActive(false);
         backButtonUI.SetActive(false);
         doubparaInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
@@ -214,6 +214,8 @@ public class doubparaScript : MonoBehaviour
         rudimentCompleteUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(false);
         lobbyConfirmUI.SetActive(false);
+        videoPlayer.SetActive(false);
+        tutorialVid.SetActive(false);
 
     }
 
