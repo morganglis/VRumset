@@ -151,6 +151,7 @@ public class paraScript : MonoBehaviour
         StartCoroutine(PressCooldown());
 
         menuTitleUI.SetActive(false);
+        startButtonUI.SetActive(false);
         tutorialButtonUI.SetActive(false);
         lobbyButtonUI.SetActive(false);
         backButtonUI.SetActive(true);
