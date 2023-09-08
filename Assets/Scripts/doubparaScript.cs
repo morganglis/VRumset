@@ -25,6 +25,13 @@ public class doubparaScript : MonoBehaviour
     public GameObject accuracyDisplayText;
     public GameObject lobbyConfirmUI;
     public GameObject lobbyConfirmButtonUI;
+    public GameObject rudimentButton;
+    public GameObject rudimentSelectionTitle;
+    public GameObject ssrButton;
+    public GameObject dsrButton;
+    public GameObject flamButton;
+    public GameObject paraButton;
+
 
     public GameObject rightStick;
     private doubparaRightStickManager RscriptManager;
@@ -57,12 +64,27 @@ public class doubparaScript : MonoBehaviour
     public GameObject tutorialVid;
     public GameObject videoPlayer;
 
+    BoxCollider ssrCollider;
+    BoxCollider dsrCollider;
+    BoxCollider flamCollider;
+    BoxCollider paraCollider;
+
     void Start() 
     {
         RscriptManager = rightStick.GetComponent<doubparaRightStickManager>(); // Grab our right stick script
         LscriptManager = leftStick.GetComponent<doubparaLeftStickManager>();    // Grab our left stick script
         timerscriptManager = timerObject.GetComponent<doubparaTimerScript>();   // Grab our timer script
         accuracy = 0;   // Ensure accuracy is set to 0
+
+        ssrCollider = ssrButton.GetComponent<BoxCollider>();
+        dsrCollider = dsrButton.GetComponent<BoxCollider>();
+        flamCollider = flamButton.GetComponent<BoxCollider>();
+        paraCollider = paraButton.GetComponent<BoxCollider>();
+
+        ssrCollider.enabled = false;
+        dsrCollider.enabled = false;
+        flamCollider.enabled = false;
+        paraCollider.enabled = false;
     }
 
     void Update()
@@ -138,6 +160,8 @@ public class doubparaScript : MonoBehaviour
         doubparaInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
         timeLeftDisplayText.SetActive(true);
+        rudimentButton.SetActive(false);
+        
     }
 
     public void tutorialButtonFunc()
@@ -159,6 +183,7 @@ public class doubparaScript : MonoBehaviour
         doubparaInProgressUI.SetActive(false);
         timeLeftTextUI.SetActive(false);
         videoPlayer.SetActive(true);
+        rudimentButton.SetActive(false);
     }
 
     public void lobbyButtonFunc()
@@ -180,7 +205,35 @@ public class doubparaScript : MonoBehaviour
         timeLeftTextUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(true);
         lobbyConfirmUI.SetActive(true);
+        rudimentButton.SetActive(false);
+        
+
+    }
+
+    public void rudimentButtonFunc()
+    {
+        if (pressed)
+        {
+            return;
+        }
+
+        pressed = true;
+        StartCoroutine(PressCooldown());
+        StartCoroutine(ColliderCooldown());
+        menuTitleUI.SetActive(false);
+        tutorialButtonUI.SetActive(false);
+        lobbyButtonUI.SetActive(false);
+        rudimentButton.SetActive(false);
+        ssrButton.SetActive(true);
+        dsrButton.SetActive(true);
+        flamButton.SetActive(true);
+        paraButton.SetActive(true);
+        startButtonUI.SetActive(false);
         backButtonUI.SetActive(true);
+        doubparaInProgressUI.SetActive(false);
+        timeLeftTextUI.SetActive(false);
+        rudimentSelectionTitle.SetActive(true);
+
         
 
     }
@@ -205,6 +258,7 @@ public class doubparaScript : MonoBehaviour
         menuTitleUI.SetActive(true);
         tutorialButtonUI.SetActive(true);
         startButtonUI.SetActive(true);
+        rudimentButton.SetActive(true);
         lobbyButtonUI.SetActive(true);
         backButtonUI.SetActive(false);
         doubparaInProgressUI.SetActive(false);
@@ -216,6 +270,15 @@ public class doubparaScript : MonoBehaviour
         lobbyConfirmUI.SetActive(false);
         videoPlayer.SetActive(false);
         tutorialVid.SetActive(false);
+        ssrButton.SetActive(false);
+        dsrButton.SetActive(false);
+        flamButton.SetActive(false);
+        paraButton.SetActive(false);
+        rudimentSelectionTitle.SetActive(false);
+        ssrCollider.enabled = false;
+        dsrCollider.enabled = false;
+        flamCollider.enabled = false;
+        paraCollider.enabled = false;
 
     }
 
@@ -223,5 +286,15 @@ public class doubparaScript : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         pressed = false;
+    }
+
+    IEnumerator ColliderCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        ssrCollider.enabled = true;
+        dsrCollider.enabled = true;
+        flamCollider.enabled = true;
+        paraCollider.enabled = true;
+
     }
 }

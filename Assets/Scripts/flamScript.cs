@@ -25,6 +25,12 @@ public class flamScript : MonoBehaviour
     public GameObject accuracyDisplayText;
     public GameObject lobbyConfirmUI;
     public GameObject lobbyConfirmButtonUI;
+    public GameObject rudimentButton;
+    public GameObject rudimentSelectionTitle;
+    public GameObject ssrButton;
+    public GameObject doubparaButton;
+    public GameObject dsrButton;
+    public GameObject paraButton;
 
     public GameObject rightStick;
     private flamRightStickManager RscriptManager;
@@ -57,12 +63,27 @@ public class flamScript : MonoBehaviour
 
     public TextMeshProUGUI accuracyText;
 
+    BoxCollider ssrCollider;
+    BoxCollider doubparaCollider;
+    BoxCollider dsrCollider;
+    BoxCollider paraCollider;
+
     void Start() 
     {
         RscriptManager = rightStick.GetComponent<flamRightStickManager>(); // Grab our right stick script
         LscriptManager = leftStick.GetComponent<flamLeftStickManager>();    // Grab our left stick script
         timerscriptManager = timerObject.GetComponent<flamTimerScript>();   // Grab our timer script
         accuracy = 0;   // Ensure accuracy is set to 0
+
+        ssrCollider = ssrButton.GetComponent<BoxCollider>();
+        doubparaCollider = doubparaButton.GetComponent<BoxCollider>();
+        dsrCollider = dsrButton.GetComponent<BoxCollider>();
+        paraCollider = paraButton.GetComponent<BoxCollider>();
+
+        ssrCollider.enabled = false;
+        doubparaCollider.enabled = false;
+        dsrCollider.enabled = false;
+        paraCollider.enabled = false;
     }
 
     void Update()
@@ -144,6 +165,8 @@ public class flamScript : MonoBehaviour
         flamInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
         timeLeftDisplayText.SetActive(true);
+        rudimentButton.SetActive(false);
+
     }
 
     public void tutorialButtonFunc()
@@ -165,6 +188,8 @@ public class flamScript : MonoBehaviour
         timeLeftTextUI.SetActive(false);
         tutorialVid.SetActive(true);
         videoPlayer.SetActive(true);
+        rudimentButton.SetActive(false);
+
     }
 
     public void lobbyButtonFunc()
@@ -187,6 +212,34 @@ public class flamScript : MonoBehaviour
         lobbyConfirmButtonUI.SetActive(true);
         lobbyConfirmUI.SetActive(true);
         backButtonUI.SetActive(true);
+        rudimentButton.SetActive(false);
+
+    }
+
+    public void rudimentButtonFunc()
+    {
+        if (pressed)
+        {
+            return;
+        }
+
+        pressed = true;
+        StartCoroutine(PressCooldown());
+        StartCoroutine(ColliderCooldown());
+        menuTitleUI.SetActive(false);
+        tutorialButtonUI.SetActive(false);
+        lobbyButtonUI.SetActive(false);
+        rudimentButton.SetActive(false);
+        ssrButton.SetActive(true);
+        doubparaButton.SetActive(true);
+        dsrButton.SetActive(true);
+        paraButton.SetActive(true);
+        startButtonUI.SetActive(false);
+        backButtonUI.SetActive(true);
+        flamInProgressUI.SetActive(false);
+        timeLeftTextUI.SetActive(false);
+        rudimentSelectionTitle.SetActive(true);
+
     }
 
     public void backButtonFunc()
@@ -220,11 +273,31 @@ public class flamScript : MonoBehaviour
         lobbyConfirmUI.SetActive(false);
         tutorialVid.SetActive(false);
         videoPlayer.SetActive(false);
+        rudimentButton.SetActive(true);
+        ssrButton.SetActive(false);
+        doubparaButton.SetActive(false);
+        dsrButton.SetActive(false);
+        paraButton.SetActive(false);
+        rudimentSelectionTitle.SetActive(false);
+        ssrCollider.enabled = false;
+        doubparaCollider.enabled = false;
+        dsrCollider.enabled = false;
+        paraCollider.enabled = false;
     }
 
     IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
     {
         yield return new WaitForSecondsRealtime(1.5f);
         pressed = false;
+    }
+
+    IEnumerator ColliderCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        ssrCollider.enabled = true;
+        doubparaCollider.enabled = true;
+        dsrCollider.enabled = true;
+        paraCollider.enabled = true;
+
     }
 }

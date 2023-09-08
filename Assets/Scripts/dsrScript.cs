@@ -24,6 +24,12 @@ public class dsrScript : MonoBehaviour {
     public GameObject accuracyDisplayText;
     public GameObject lobbyConfirmUI;
     public GameObject lobbyConfirmButtonUI;
+    public GameObject rudimentButton;
+    public GameObject rudimentSelectionTitle;
+    public GameObject ssrButton;
+    public GameObject doubparaButton;
+    public GameObject flamButton;
+    public GameObject paraButton;
 
     public GameObject rightStick;
     private dsrRightStickManager RscriptManager;
@@ -56,12 +62,27 @@ public class dsrScript : MonoBehaviour {
 
     public TextMeshProUGUI accuracyText;
 
+    BoxCollider ssrCollider;
+    BoxCollider doubparaCollider;
+    BoxCollider flamCollider;
+    BoxCollider paraCollider;
+
     void Start() 
     {
         RscriptManager = rightStick.GetComponent<dsrRightStickManager>(); // Grab our right stick script
         LscriptManager = leftStick.GetComponent<dsrLeftStickManager>();    // Grab our left stick script
         timerscriptManager = timerObject.GetComponent<dsrTimerScript>();   // Grab our timer script
         accuracy = 0;   // Ensure accuracy is set to 0
+
+        ssrCollider = ssrButton.GetComponent<BoxCollider>();
+        doubparaCollider = doubparaButton.GetComponent<BoxCollider>();
+        flamCollider = flamButton.GetComponent<BoxCollider>();
+        paraCollider = paraButton.GetComponent<BoxCollider>();
+
+        ssrCollider.enabled = false;
+        doubparaCollider.enabled = false;
+        flamCollider.enabled = false;
+        paraCollider.enabled = false;
     }
 
     void Update()
@@ -138,6 +159,7 @@ public class dsrScript : MonoBehaviour {
         dsRInProgressUI.SetActive(true);
         timeLeftTextUI.SetActive(true);
         timeLeftDisplayText.SetActive(true);
+        rudimentButton.SetActive(false);
     }
 
     public void tutorialButtonFunc()
@@ -159,6 +181,7 @@ public class dsrScript : MonoBehaviour {
         timeLeftTextUI.SetActive(false);
         tutorialVid.SetActive(true);
         videoPlayer.SetActive(true);
+        rudimentButton.SetActive(false);
     }
 
     public void lobbyButtonFunc()
@@ -180,7 +203,32 @@ public class dsrScript : MonoBehaviour {
         timeLeftTextUI.SetActive(false);
         lobbyConfirmButtonUI.SetActive(true);
         lobbyConfirmUI.SetActive(true);
+        rudimentButton.SetActive(false);
+    }
+
+      public void rudimentButtonFunc()
+    {
+        if (pressed)
+        {
+            return;
+        }
+
+        pressed = true;
+        StartCoroutine(PressCooldown());
+        StartCoroutine(ColliderCooldown());
+        menuTitleUI.SetActive(false);
+        tutorialButtonUI.SetActive(false);
+        lobbyButtonUI.SetActive(false);
+        rudimentButton.SetActive(false);
+        ssrButton.SetActive(true);
+        doubparaButton.SetActive(true);
+        flamButton.SetActive(true);
+        paraButton.SetActive(true);
+        startButtonUI.SetActive(false);
         backButtonUI.SetActive(true);
+        dsRInProgressUI.SetActive(false);
+        timeLeftTextUI.SetActive(false);
+        rudimentSelectionTitle.SetActive(true);
 
     }
 
@@ -215,11 +263,32 @@ public class dsrScript : MonoBehaviour {
         lobbyConfirmUI.SetActive(false);
         tutorialVid.SetActive(false);
         videoPlayer.SetActive(false);
+        rudimentButton.SetActive(true);
+        ssrButton.SetActive(false);
+        doubparaButton.SetActive(false);
+        flamButton.SetActive(false);
+        paraButton.SetActive(false);
+        rudimentSelectionTitle.SetActive(false);
+        ssrCollider.enabled = false;
+        doubparaCollider.enabled = false;
+        flamCollider.enabled = false;
+        paraCollider.enabled = false;
+
     }
 
     IEnumerator PressCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
     {
         yield return new WaitForSecondsRealtime(1.5f);
         pressed = false;
+    }
+
+    IEnumerator ColliderCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        ssrCollider.enabled = true;
+        doubparaCollider.enabled = true;
+        flamCollider.enabled = true;
+        paraCollider.enabled = true;
+
     }
 }

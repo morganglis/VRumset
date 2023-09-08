@@ -21,11 +21,6 @@ public class menuScript : MonoBehaviour
     public GameObject rudimentBanner;
     public GameObject confirmBanner;
 
-    public GameObject ssrConfirmButton;
-    public GameObject dsrConfirmButton;
-    public GameObject fConfirmButton;
-    public GameObject pConfirmButton;
-    public GameObject dpConfirmButton;
     public GameObject freePlayConfirmButton;
 
     public GameObject backButton;
@@ -33,7 +28,33 @@ public class menuScript : MonoBehaviour
     public GameObject tutorialVid;
     public GameObject videoPlayer;
 
+    public VideoPlayer tutorialVideo;
+
+    public GameObject pauseButtonUI;
+    public GameObject playButtonUI;
+
     private bool pressed = false;
+
+    BoxCollider ssrCollider;
+    BoxCollider paraCollider;
+    BoxCollider doubparaCollider;
+    BoxCollider dsrCollider;
+    BoxCollider flamCollider;
+
+    void Start() 
+    { 
+        ssrCollider = ssrButton.GetComponent<BoxCollider>();
+        paraCollider = pButton.GetComponent<BoxCollider>();
+        doubparaCollider = dpButton.GetComponent<BoxCollider>();
+        dsrCollider = dsrButton.GetComponent<BoxCollider>();
+        flamCollider = fButton.GetComponent<BoxCollider>();
+
+        ssrCollider.enabled = false;
+        paraCollider.enabled = false;
+        doubparaCollider.enabled = false;
+        dsrCollider.enabled = false;
+        flamCollider.enabled = false;
+    }
 
     public void tutorialButtonFunc()
     {
@@ -52,6 +73,7 @@ public class menuScript : MonoBehaviour
         backButton.SetActive(true);
         tutorialVid.SetActive(true);
         videoPlayer.SetActive(true);
+        pauseButtonUI.SetActive(true);
 
     }
 
@@ -63,7 +85,7 @@ public class menuScript : MonoBehaviour
         }
         pressed = true;
         StartCoroutine(PressCooldown());
-
+        StartCoroutine(ColliderCooldown());
         welcomeBanner.SetActive(false);
         rudimentBanner.SetActive(true);
         rudimentButton.SetActive(false);
@@ -117,21 +139,20 @@ public class menuScript : MonoBehaviour
         fButton.SetActive(false);
         pButton.SetActive(false);
         dpButton.SetActive(false);
-        ssrConfirmButton.SetActive(false);
-        dsrConfirmButton.SetActive(false);
-        fConfirmButton.SetActive(false);
-        pConfirmButton.SetActive(false);
-        dpConfirmButton.SetActive(false);
         confirmBanner.SetActive(false);
+        freePlayConfirmButton.SetActive(false);
 
         videoPlayer.SetActive(false);
         tutorialVid.SetActive(false);
         rudimentBanner.SetActive(false);
         confirmBanner.SetActive(false);
 
+        playButtonUI.SetActive(false);
+        pauseButtonUI.SetActive(false);
+
     }
 
-    public void ssrConfirm()
+    public void pauseButton()
     {
         if (pressed)
         {
@@ -139,24 +160,12 @@ public class menuScript : MonoBehaviour
         }
         pressed = true;
         StartCoroutine(PressCooldown());
-
-        welcomeBanner.SetActive(false);
-        confirmBanner.SetActive(true);
-        ssrConfirmButton.SetActive(true);
-        backButton.SetActive(true);
-        rudimentBanner.SetActive(false);
-        rudimentButton.SetActive(false);
-        tutorialButton.SetActive(false);
-        freePlayButton.SetActive(false);
-        ssrButton.SetActive(false);
-        dsrButton.SetActive(false);
-        fButton.SetActive(false);
-        pButton.SetActive(false);
-        dpButton.SetActive(false);
-
+        tutorialVideo.Pause();
+        pauseButtonUI.SetActive(false);
+        playButtonUI.SetActive(true);
     }
 
-    public void dsrConfirm()
+    public void playButton()
     {
         if (pressed)
         {
@@ -164,104 +173,25 @@ public class menuScript : MonoBehaviour
         }
         pressed = true;
         StartCoroutine(PressCooldown());
-
-        welcomeBanner.SetActive(false);
-        confirmBanner.SetActive(true);
-        dsrConfirmButton.SetActive(true);
-        backButton.SetActive(true);
-        rudimentButton.SetActive(false);
-        tutorialButton.SetActive(false);
-        freePlayButton.SetActive(false);
-        rudimentBanner.SetActive(false);
-        freePlayButton.SetActive(false);
-        ssrButton.SetActive(false);
-        dsrButton.SetActive(false);
-        fButton.SetActive(false);
-        pButton.SetActive(false);
-        dpButton.SetActive(false);
-    }
-
-    public void fConfirm()
-    {
-        if (pressed)
-        {
-            return;
-        }
-        pressed = true;
-        StartCoroutine(PressCooldown());
-
-        welcomeBanner.SetActive(false);
-        confirmBanner.SetActive(true);
-        fConfirmButton.SetActive(true);
-        backButton.SetActive(true);
-        rudimentButton.SetActive(false);
-        tutorialButton.SetActive(false);
-        freePlayButton.SetActive(false);
-        rudimentBanner.SetActive(false);
-        freePlayButton.SetActive(false);
-        ssrButton.SetActive(false);
-        dsrButton.SetActive(false);
-        fButton.SetActive(false);
-        pButton.SetActive(false);
-        dpButton.SetActive(false);
-
-    }
-
-    public void pConfirm()
-    {
-        if (pressed)
-        {
-            return;
-        }
-        pressed = true;
-        StartCoroutine(PressCooldown());
-
-        welcomeBanner.SetActive(false);
-        confirmBanner.SetActive(true);
-        pConfirmButton.SetActive(true);
-        backButton.SetActive(true);
-        rudimentButton.SetActive(false);
-        tutorialButton.SetActive(false);
-        freePlayButton.SetActive(false);
-        rudimentBanner.SetActive(false);
-        freePlayButton.SetActive(false);
-        ssrButton.SetActive(false);
-        dsrButton.SetActive(false);
-        fButton.SetActive(false);
-        pButton.SetActive(false);
-        dpButton.SetActive(false);
-
-    }
-
-    public void dpConfirm()
-    {
-        if (pressed)
-        {
-            return;
-        }
-        pressed = true;
-        StartCoroutine(PressCooldown());
-
-        welcomeBanner.SetActive(false);
-        confirmBanner.SetActive(true);
-        dpConfirmButton.SetActive(true);
-        backButton.SetActive(true);
-        rudimentButton.SetActive(false);
-        tutorialButton.SetActive(false);
-        freePlayButton.SetActive(false);
-        rudimentBanner.SetActive(false);
-        freePlayButton.SetActive(false);
-        ssrButton.SetActive(false);
-        dsrButton.SetActive(false);
-        fButton.SetActive(false);
-        pButton.SetActive(false);
-        dpButton.SetActive(false);
-
+        tutorialVideo.Play();
+        playButtonUI.SetActive(false);
+        pauseButtonUI.SetActive(true);
     }
 
     IEnumerator PressCooldown()
     {
         yield return new WaitForSecondsRealtime(0.5f);
         pressed = false;
+    }
+
+    IEnumerator ColliderCooldown() // UI button cooldown function so the user can't accidentally hit a button when it loads in too quick
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        ssrCollider.enabled = true;
+        paraCollider.enabled = true;
+        doubparaCollider.enabled = true;
+        dsrCollider.enabled = true;
+        flamCollider.enabled = true;
+
     }
 }

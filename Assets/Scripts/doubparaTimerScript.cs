@@ -87,18 +87,26 @@ public class doubparaTimerScript : MonoBehaviour
                 twoRR.SetActive(false);
                 threeRR.SetActive(false);
                 fourRR.SetActive(false);
+                fiveRR.SetActive(false);
+                sixRR.SetActive(false);
                 oneLR.SetActive(false);
                 twoLR.SetActive(false);
                 threeLR.SetActive(false);
                 fourLR.SetActive(false);
+                fiveLR.SetActive(false);
+                sixLR.SetActive(false);
                 oneRRPC.SetActive(false);
                 twoRRPC.SetActive(false);
                 threeRRPC.SetActive(false);
                 fourRRPC.SetActive(false);
+                fiveRRPC.SetActive(false);
+                sixRRPC.SetActive(false);
                 oneLRPC.SetActive(false);
                 twoLRPC.SetActive(false);
                 threeLRPC.SetActive(false);
                 fourLRPC.SetActive(false);
+                fiveLRPC.SetActive(false);
+                sixLRPC.SetActive(false);
 
             }
         }

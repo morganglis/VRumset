@@ -13,6 +13,9 @@ public class flamTimerScript : MonoBehaviour {
     private flamScript scriptManager;
 
     public GameObject leftRingPointCollider;
+    public GameObject secondleftRingPointCollider;
+    public GameObject rightRingPointCollider;
+    public GameObject secondrightRingPointCollider;
     public GameObject rightRingModel;
     public GameObject secondrightRingModel;
     public GameObject secondleftRingModel;
@@ -62,6 +65,10 @@ public class flamTimerScript : MonoBehaviour {
                 secondleftRingModel.SetActive(false);
                 rightRingModel.SetActive(false);
                 secondrightRingModel.SetActive(false);
+                secondleftRingPointCollider.SetActive(false);
+                leftRingPointCollider.SetActive(false);
+                rightRingPointCollider.SetActive(false);
+                secondrightRingPointCollider.SetActive(false);
 
 
             }
